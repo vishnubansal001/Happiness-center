@@ -15,7 +15,7 @@
 }
 
 body {
-	background-color: rgb(225, 222, 222);
+	background-color: rgb(255, 255, 255);
 }
 .scroll-remove::-webkit-scrollbar {
 	display: none;
