@@ -3,6 +3,11 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
 import LandingPage from './LandingPage';
+import Counseling from './Counseling';
+import Events from './Events';
+import Team from './Team';
+import Archive from './Archive';
+import About from './About';
 
 document.onkeydown = function (e) {
 	if (e.keyCode === 123) {
@@ -51,7 +56,12 @@ const App = () => {
     <BrowserRouter>
     <Header/>
       <Routes>
-      <Route exact path='/' render={(props)=><LandingPage {...props} />} />
+      <Route exact path='/' element={<LandingPage/>} />
+      <Route exact path='/about' element={<About  />} />
+      <Route exact path='/counseling' element={<Counseling  />} />
+      <Route exact path='/events' element={<Events  />} />
+      <Route exact path='/team' element={<Team  />} />
+      <Route exact path='/archive' element={<Archive  />} />
       </Routes>
     <Footer/>
     </BrowserRouter>
