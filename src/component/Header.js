@@ -219,8 +219,8 @@ export default function Header() {
             </div>
           </div>
           <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-monts p-1">
-            <div className="flex items-center absolute justify-center bg-[#FB393F] w-[8rem] h-[2.5rem] p-2 ">
-              <p className="text-sm">Register Now</p>
+            <div className="flex items-center absolute justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3">
+              <p className="text-[.8rem]">Achievements</p>
             </div>
             <div className="flex ml-[8px] mt-[10px] items-center justify-center bg-[#000000] w-[8rem] h-[2.5rem] "></div>
           </div>

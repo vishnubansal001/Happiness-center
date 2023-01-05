@@ -52,7 +52,7 @@ document.onkeydown = function (e) {
 const App = () => {
 
   return (
-   <React.Fragment>
+   <React.Fragment className="debug-screens">
     <BrowserRouter>
     <Header/>
       <Routes>
