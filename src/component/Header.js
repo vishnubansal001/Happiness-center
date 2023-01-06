@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.svg";
 import { NavLink } from "react-router-dom";
-import burger from "../assets/burger.png";
+import burger from "../assets/menu.png";
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -131,11 +131,11 @@ export default function Header() {
               className="navbar-burger flex items-center justify-center text-mainColor p-3"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center p-1 object-scale-down">
                 <img
                   src={burger}
                   alt="burger menu"
-                  class="sm:w-10 sm:h-10 h-8 w-8   md:w-12 md:h-12"
+                  class="sm:w-8 sm:h-8 h-6 w-6"
                 />
               </div>
             </button>
@@ -219,10 +219,10 @@ export default function Header() {
             </div>
           </div>
           <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-monts p-1">
-            <div className="flex items-center absolute justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3">
+            <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 shadow-[4px_4px_rgba(0,0,0,1)]">
               <p className="text-[.8rem]">Achievements</p>
             </div>
-            <div className="flex ml-[8px] mt-[10px] items-center justify-center bg-[#000000] w-[8rem] h-[2.5rem] "></div>
+            
           </div>
         </nav>
         <div
