@@ -135,7 +135,7 @@ export default function Header() {
                 <img
                   src={burger}
                   alt="burger menu"
-                  class="sm:w-8 sm:h-8 h-6 w-6"
+                  className="sm:w-8 sm:h-8 h-6 w-6"
                 />
               </div>
             </button>
@@ -249,9 +249,9 @@ export default function Header() {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>
