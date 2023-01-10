@@ -141,7 +141,7 @@ export default function Header() {
             </button>
           </div>
           <div className="hidden lg:flex flex-row items-center justify-center p-1">
-            <div className="flex flex-row items-center justify-center gap-12 font-monts p-1">
+            <div className="flex flex-row items-center justify-center gap-12 font-zilla p-1">
               <NavLink
                 to="/"
                 style={({ isActive }) => ({
@@ -218,7 +218,7 @@ export default function Header() {
               </NavLink>
             </div>
           </div>
-          <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-monts p-1">
+          <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-zilla p-1">
             <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 shadow-[4px_4px_rgba(0,0,0,1)]">
               <p className="text-[.8rem]">Achievements</p>
             </div>
@@ -258,7 +258,7 @@ export default function Header() {
               </button>
             </div>
             <div className="flex flex-col items-start justify-center p-1">
-              <div className="flex flex-col items-start justify-center gap-12 font-monts p-1 text-grey-800">
+              <div className="flex flex-col items-start justify-center gap-12 font-zilla p-1 text-grey-800">
                 <NavLink
                   to="/"
                   style={({ isActive }) => ({

@@ -24,6 +24,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				monts: ["Montserrat", "sans-serif"],
+				zilla:["Zilla Slab", "sans-serif"]
 			},
 			
 		},
