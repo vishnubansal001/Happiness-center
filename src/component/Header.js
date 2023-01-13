@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 import burger from "../assets/menu.png";
+import vector from '../assets/Vector.svg';
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -119,13 +120,23 @@ export default function Header() {
     <React.Fragment>
       <header>
         <nav className="relative px-4 py-4 flex justify-between items-center">
+        <NavLink
+                to="/"
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "black",
+                  fontWeight: isActive ? "bold" : "normal",
+                  transition: "all 0.5s ease-in-out",
+                })}
+              >
           <div className="flex items-center justify-center flex-row lg:ml-4 lg:mr-11">
             <img
               src={logo}
               alt="happiness"
               className="md:h-[95%] md:w-[95%] sm:w-[80%] sm:h-[80%] h-[75%] w-[75%]"
+
             />
           </div>
+          </NavLink>
           <div className="lg:hidden">
             <button
               className="navbar-burger flex items-center justify-center text-mainColor p-3"
@@ -219,10 +230,13 @@ export default function Header() {
             </div>
           </div>
           <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-zilla p-1">
+          <a
+                href="#rewards"
+              >
             <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 shadow-[4px_4px_rgba(0,0,0,1)]">
-              <p className="text-[.8rem]">Achievements</p>
+                 <p className="text-[.9rem]">Achievements</p>
             </div>
-            
+            </a>
           </div>
         </nav>
         <div
@@ -336,6 +350,9 @@ export default function Header() {
               </div>
             </div>
           </nav>
+        </div>
+        <div className="flex items-center justify-center absolute top-0 right-0 z-[-1]">
+          <img src={vector} alt="vector color art" className="w-24 h-24" /> 
         </div>
       </header>
     </React.Fragment>

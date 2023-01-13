@@ -26,6 +26,12 @@ module.exports = {
 				monts: ["Montserrat", "sans-serif"],
 				zilla:["Zilla Slab", "sans-serif"]
 			},
+			width: {
+				'128': '32rem',
+			  },
+			height: {
+				'128': '32rem',
+			  }
 			
 		},
 	},

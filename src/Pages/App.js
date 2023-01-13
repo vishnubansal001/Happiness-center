@@ -8,6 +8,10 @@ import Events from './Events';
 import Team from './Team';
 import Archive from './Archive';
 import About from './About';
+import Library from './Library';
+import Meditation from './Meditation';
+import Registration from './Registration';
+import Speaker from './Speaker';
 
 document.onkeydown = function (e) {
 	if (e.keyCode === 123) {
@@ -59,6 +63,10 @@ const App = () => {
       <Route exact path='/' element={<LandingPage/>} />
       <Route exact path='/about' element={<About  />} />
       <Route exact path='/counseling' element={<Counseling  />} />
+      <Route exact path='/library' element={<Library  />} />
+      <Route exact path='/meditation' element={<Meditation  />} />
+      <Route exact path='/registration' element={<Registration  />} />
+      <Route exact path='/speaker' element={<Speaker  />} />
       <Route exact path='/events' element={<Events  />} />
       <Route exact path='/team' element={<Team  />} />
       <Route exact path='/archive' element={<Archive  />} />
