@@ -231,7 +231,7 @@ export default function Header() {
           </div>
           <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-zilla p-1">
           <a
-                href="#rewards"
+                href="/#rewards"
               >
             <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 shadow-[4px_4px_rgba(0,0,0,1)]">
                  <p className="text-[.9rem]">Achievements</p>

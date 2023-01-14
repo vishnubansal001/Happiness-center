@@ -15,7 +15,7 @@ export default function Quotes() {
                 console.log(response.data)
                 setresult(newData);
               };
-             fetchData();       
+            // fetchData();       
     },[])
   return (
     <React.Fragment>
