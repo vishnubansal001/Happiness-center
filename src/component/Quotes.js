@@ -14,9 +14,16 @@ export default function Quotes() {
                 const newData = await response.data[0].quote;
                 console.log(response.data)
                 setresult(newData);
+                localStorage.setItem('quote', JSON.stringify(result));
               };
-            fetchData();       
-    },[])
+              const items = JSON.parse(localStorage.getItem('quote'));
+  if (!items) {
+    fetchData();  
+  }else{
+    setresult(items);
+  }
+               
+    },[result])
   return (
     <React.Fragment>
         

@@ -4,6 +4,9 @@ import vector7 from "../assets/vector7.svg";
 import vector8 from "../assets/Vector8.svg";
 import flower from "../assets/flower.svg";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Registration() {
 
@@ -33,7 +36,7 @@ export default function Registration() {
   const [validYear,setYValid] = React.useState(false);
   const [validPhone,setPValid] = React.useState(false);
   const [isdisabled, setIsDisabled] = React.useState(true)
-  
+  const navigate = useNavigate();
   useEffect(()=>{
    
     if(validEmail && validName && validRoll && validPhone && validYear){
@@ -137,16 +140,21 @@ export default function Registration() {
 
   async function onSubmit(e){
     e.preventDefault();
-    //api set up here and add data to database
-   //API
-
-   //add this to success block
-
-    toast.success("Logged In Successfully");
-    //add this to error block
-    toast.error("Bad user Credentials")
-
-   //after submit values are empty here
+    try {
+      const formDataCopy = {
+        ...formData,
+      };
+      const docRef = await addDoc(collection(db, "registration"), formDataCopy);
+      
+       //add this to success block
+    
+        toast.success("Successfully Registered");
+        navigate(`/`);
+     } catch (error) {
+       //add this to error block
+       toast.error("Something went wrong")
+     }
+     
    setFormData((prevState) => ({
     ...prevState,
     name: "",

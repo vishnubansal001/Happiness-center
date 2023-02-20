@@ -7,7 +7,7 @@ import youtube from "../assets/youtube.svg";
 
 export default function Footer() {
   return (
-    <div className="flex items-center justify-around flex-row gap-2 p-1 bg-white">
+    <div className="flex items-center justify-around flex-row p-1 bg-white border-t border-[#fcda69]">
        <NavLink
                 to="/"
                 style={({ isActive }) => ({

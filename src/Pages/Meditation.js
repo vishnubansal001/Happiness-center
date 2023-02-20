@@ -4,6 +4,9 @@ import vector11 from "../assets/vector11.svg";
 import vector16 from "../assets/Vector16.svg";
 import flower3 from "../assets/flower3.svg";
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
 
 
@@ -38,7 +41,7 @@ export default function Meditation() {
   const [validPhone,setPValid] = React.useState(false);
   const [validTime,setTValid] = React.useState(false);
   const [isdisabled, setIsDisabled] = React.useState(true)
-  
+  const navigate = useNavigate();
   React.useEffect(()=>{
    
     if(validEmail && validName && validRoll && validPhone && validDate && validTime){
@@ -158,14 +161,22 @@ export default function Meditation() {
     e.preventDefault();
     //api set up here and add data to database
    //API
- 
-   //add this to success block
-
-    toast.success("Logged In Successfully");
-    //add this to error block
-    toast.error("Bad user Credentials")
-
-   //after submit values are empty here
+   try {
+    const formDataCopy = {
+      ...formData,
+    };
+    const docRef = await addDoc(collection(db, "meditation"), formDataCopy);
+    
+     //add this to success block
+  
+      toast.success("Successfully Registered");
+      navigate(`/`);
+   } catch (error) {
+     //add this to error block
+     toast.error("Something went wrong")
+   }
+   
+  
    setFormData((prevState) => ({
     ...prevState,
     name: "",

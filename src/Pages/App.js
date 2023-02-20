@@ -12,6 +12,7 @@ import Library from './Library';
 import Meditation from './Meditation';
 import Registration from './Registration';
 import Speaker from './Speaker';
+import { ToastContainer } from 'react-toastify';
 
 document.onkeydown = function (e) {
 	if (e.keyCode === 123) {
@@ -73,6 +74,18 @@ const App = () => {
       </Routes>
     <Footer/>
     </BrowserRouter>
+	<ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
    </React.Fragment>
   );
 }

@@ -4,6 +4,9 @@ import vector12 from "../assets/vector12.svg";
 import vector13 from "../assets/Vector13.svg";
 import flower2 from "../assets/flower2.svg";
 import { toast } from "react-toastify";
+import { db } from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 export default function Counseling() {
    
@@ -36,7 +39,7 @@ export default function Counseling() {
   const [validPhone,setPValid] = React.useState(false);
   const [validTime,setTValid] = React.useState(false);
   const [isdisabled, setIsDisabled] = React.useState(true)
-  
+  const navigate = useNavigate();
   React.useEffect(()=>{
    
     if(validEmail && validName && validRoll && validPhone && validDate && validTime){
@@ -156,12 +159,22 @@ export default function Counseling() {
     e.preventDefault();
     //api set up here and add data to database
    //API
- 
-   //add this to success block
-
-    toast.success("Logged In Successfully");
-    //add this to error block
-    toast.error("Bad user Credentials")
+   try {
+    const formDataCopy = {
+      ...formData,
+    };
+    const docRef = await addDoc(collection(db, "counseling"), formDataCopy);
+    
+     //add this to success block
+  
+      toast.success("Successfully Registered");
+      navigate(`/`);
+   } catch (error) {
+     //add this to error block
+     toast.error("Something went wrong")
+   }
+   
+   
 
    //after submit values are empty here
    setFormData((prevState) => ({

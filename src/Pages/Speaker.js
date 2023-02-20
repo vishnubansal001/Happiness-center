@@ -4,6 +4,9 @@ import vector14 from "../assets/vector14.svg";
 import vector8 from "../assets/Vector8.svg";
 import flower5 from "../assets/flower5.svg";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Speaker() {
 
@@ -33,7 +36,7 @@ export default function Speaker() {
   const [validYear,setYValid] = React.useState(false);
   const [validPhone,setPValid] = React.useState(false);
   const [isdisabled, setIsDisabled] = React.useState(true)
-  
+  const navigate=useNavigate();
   useEffect(()=>{
    
     if(validEmail && validName && validRoll && validPhone && validYear){
@@ -137,14 +140,21 @@ export default function Speaker() {
 
   async function onSubmit(e){
     e.preventDefault();
-    //api set up here and add data to database
-   //API
-
-   //add this to success block
-
-    toast.success("Logged In Successfully");
-    //add this to error block
-    toast.error("Bad user Credentials")
+    try {
+      const formDataCopy = {
+        ...formData,
+      };
+      const docRef = await addDoc(collection(db, "speaker"), formDataCopy);
+      
+       //add this to success block
+    
+        toast.success("Successfully Registered");
+        navigate(`/`);
+     } catch (error) {
+       //add this to error block
+       toast.error("Something went wrong")
+     }
+     
 
    //after submit values are empty here
    setFormData((prevState) => ({
