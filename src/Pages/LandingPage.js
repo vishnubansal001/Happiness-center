@@ -775,7 +775,7 @@ export default function LandingPage() {
                   modules={[Navigation, Pagination, EffectFade, Autoplay]}
                   slidesPerView={5}
                   spaceBetween={50}
-                  // autoplay={{ delay: 2500 }}
+                  autoplay={{ delay: 2500 }}
                   breakpoints={{
                     300: {
                       slidesPerView: 1,
@@ -997,7 +997,7 @@ export default function LandingPage() {
               {loading ? <Spinner/> : ( notices && notices.length > 0 ? ( notices.map((item,index)=>(
                 <>
                 <a href={item?.data?.noticeLink} key={index} className="flex flex-1 flex-col items-center justify-center w-full h-[18%]">
-                <div className="flex flex-col items-center justify-center w-full h-full p-2">
+                <div className="flex flex-col items-center justify-start w-full h-full p-2">
                 <p className="font-zilla font-normal flex items-center text-center text-blue-800 justify-center gap-2 text-xl p-1">
                   {item?.data?.noticeName}
                 </p>
