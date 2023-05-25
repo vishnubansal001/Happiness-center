@@ -4,7 +4,7 @@ import vector9 from "../assets/vector9.svg";
 import vector10 from "../assets/Vector10.svg";
 import flower4 from "../assets/flower4.svg";
 import { toast } from "react-toastify";
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -182,6 +182,7 @@ export default function Library() {
     
     const formDataCopy = {
       ...formData,
+      timestamp: serverTimestamp(), 
     };
     const docRef = await addDoc(collection(db, "library"), formDataCopy);
    

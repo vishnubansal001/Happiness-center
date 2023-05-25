@@ -21,7 +21,7 @@ import Quotes from "../component/Quotes";
 import mobile from "../assets/mobile.svg";
 import achievements from "../assets/achivements.svg";
 import achievements2 from "../assets/achivements2.svg";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import vector1 from "../assets/Vector1.svg";
 import vector2 from "../assets/Vector2.svg";
 import vector3 from "../assets/Vector3.svg";
@@ -36,8 +36,425 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 import "swiper/css/bundle";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import { toast } from "react-toastify";
+import Spinner from "../component/Spinner";
 
 export default function LandingPage() {
+  const ambassadors = [
+    {
+      name: "Dr. Sandhir Sharma",
+      position: "Chitkara Business School",
+      description:
+        "Happiness is not something ready-made. It comes from your own actions.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Shivani Chopra",
+      position: "Chitkara Business School",
+      description:
+        "The happiness of your life depends upon the quality of your thoughts.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Rashmi Aggarwal",
+      position: "Chitkara Business School",
+      description:
+        "Happiness is not the absence of problems, it's the ability to deal with them.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Dhiresh Kulsherstha",
+      position: "Chitkara Business School",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sumit Wadhera",
+      position: "College of Architecture and Planning",
+      description:
+        "The secret of happiness is not in doing what one likes, but in liking what one does.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Prof. Atul Dutta",
+      position: "College of Architecture and Planning",
+      description:
+        "The greatest happiness you can have is knowing that you are loved for who you are.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Vani Parwez",
+      position: "Chitkara College of Education",
+      description:
+        "Happiness is not something you postpone for the future; it is something you design for the present.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sangeeta Pant",
+      position: "Chitkara College of Education",
+      description:
+        "Happiness is not having what you want. It is wanting what you have.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Vidhu Baggan",
+      position: "CUIET",
+      description:
+        "Happiness is a state of mind. It's just according to the way you look at things.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Monit Kapoor",
+      position: "CUIET",
+      description:
+        "The happiest people don't have the best of everything, they just make the best of everything.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Isha",
+      position: "ECE Department",
+      description:
+        "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Shivani Malhotra",
+      position: "ECE Department",
+      description:
+        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Gopal Meena",
+      position: "Chitkara Design School",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Akansha Ghai",
+      position: "Chitkara Design School",
+      description:
+        "The greatest happiness you can have is knowing that you are loved for who you are.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Ashutosh Mishra",
+      position: "Department of Mess Communication",
+      description:
+        "Happiness is a perfume you cannot pour on others without getting a few drops on yourself.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Gitanjali Kalia",
+      position: "Department of Mess Communication",
+      description:
+        "The happiness of your life depends upon the quality of your relationships.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Anupama",
+      position: "Psychology Department",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Gopal Meena",
+      position: "Chitkara Design School",
+      description:
+        "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Jyoti",
+      position: "Psychology Department",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sonika Bakshi",
+      position: "Department of Allied health Nursing",
+      description:
+        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sunita Singh",
+      position: "Department of Allied health Nursing",
+      description:
+        "The happiest people don't have the best of everything, they just make the best of everything.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Amandeep Kaur",
+      position: "Department of Allied health Nursing",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Manpreet Grewal",
+      position: "Law School",
+      description:
+        "Happiness is not something you can postpone for the future; it is something you design for the present",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Vijay Kumar Jadon",
+      position: "Applied Engineering-CUIET",
+      description:
+        "Happiness is not a station you arrive at, but a manner of traveling",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sdarth Bedi",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "Happiness is a state of mind. It's just according to the way you look at things",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Chef Shankar",
+      position: "Department of Allied health Nursing",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Amandeep Kaur",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "The key to being happy is knowing you have the power to choose what to accept and what to let go",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Amit",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harpal Singh",
+      position: "Liberal Arts",
+      description:
+        "Happiness is not the absence of problems, it's the ability to deal with them",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. PK Khosla",
+      position: "Pro Vice Chancellor",
+      description:
+        "The happiness of your life depends upon the quality of your thoughts.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "COL. Rakesh Sharma",
+      position: "Director Office of University Affairs",
+      description:
+        "The most important thing is to enjoy your life—to be happy—it's all that matters.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Rina Angel",
+      position: "Director Administration- HK & Maintenance",
+      description:
+        "The happiest people are those who are too busy to notice whether they are happy or not",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "CA. Rajat Bhatia",
+      position: "Office of Finance and accounts",
+      description:
+        "Happiness is not something you can buy, it's something you can create",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Capt. Seema Sidhu",
+      position: "Office of Residential Services",
+      description:
+        "The secret of happiness is not in doing what one likes, but in liking what one does",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Ritu Nag",
+      position: "Chief Communications Officer",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Harinder Pal Singh",
+      position: "Director of University Sports Board",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Sawaranjeet Sidhu",
+      position: "Office of Brand Communication",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harkiran Kaur",
+      position: "Chitkara Alumni Network",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harpreet Singh Bhatia",
+      position: "Office of Talent Management",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Arpit",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Atul",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Mahima",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Parminder Kaur",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mrs. Tanushree",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+
+    {
+      name: "Mr. Vicky Kumar",
+      position: "Residential Department",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Pradeep Tripaathi",
+      position: "Senior Boys Hostels Warden",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mrs. Indra",
+      position: "Senior Girls Hostel Warden",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+  ];
+  const testimonials = [
+    {
+      id: 1,
+      name: "Vrinda",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "Joining happiness club is a great way to meet new people, learn new skills, and discover new ways to find joy and fulfillment in your life.",
+    },
+    {
+      id: 2,
+      name: "Natasha",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "Whether you're looking to reduce stress, improve you mental health, or simply have more fun, happiness club has something for you.",
+    },
+    {
+      id: 3,
+      name: "Keshav Kumar",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "happiness club is more than just a social club - it's a community of like-minded individuals who are dedicated to living their best lives.",
+    },
+    {
+      id: 4,
+      name: "Himani Goyal",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "events are designed to help you build resilience an cope with life's challenges in a healthy and positive way.",
+    },
+    {
+      id: 5,
+      name: "Vansh Kapoor",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "Joining happiness club is a great way to make new friends and connect with others who share your values and goals.",
+    },
+    {
+      id: 6,
+      name: "Ishika Singh",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "happiness club is a safe and supportive space where you can be yourself and share your experiences with others who understand.",
+    },
+    {
+      id: 7,
+      name: "Shivam Mishra",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      txt: "By attending events, you'll learn practical tools and strategies for cultivating happiness and well-being in your everyday life.",
+    },
+  ];
+  const [notices,setNotices] = useState(null);
+  const [loading,setLoading] = useState(true);
+
+  useEffect(()=>{
+    
+        async function fetchListings(){
+          try{
+            const noticeRef = collection(db, "notice");
+            const querySnap = await getDocs(noticeRef);
+            
+            const notices = [];
+            querySnap.forEach((doc) => {
+              return notices.push({
+                id: doc.id,
+                data: doc.data(),
+              });
+            });
+            setNotices(notices);
+            sessionStorage.setItem("notices",JSON.stringify(notices))
+            setLoading(false)
+            console.log(notices)
+          }catch(error){
+              toast.error("Something Went Wrong! Network Issue")
+          }
+        }
+        if(notices===null&&sessionStorage.getItem("notices")===null){
+        fetchListings()
+      }
+        else if(sessionStorage.getItem("notices")!==null){
+          setNotices(JSON.parse(sessionStorage.getItem("notices")))
+          console.log(notices)
+          setLoading(false)
+          
+        }
+        
+  },[])
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   return (
     <div className="flex flex-col items-center font-monts gap-6">
@@ -48,22 +465,19 @@ export default function LandingPage() {
               There is only one <span className="text-[#F3A140]">passion</span>,
               the passion for <span className="text-[#EF1C22]">happiness.</span>
             </h1>
-            <NavLink
-                to="/registration"         
-              >
-            <div className="flex relative flex-row items-center justify-center gap-6  ml-0 md:ml-6 lg:ml-8 xl:ml-12 p-1 mb-1 font-zilla">
-             
-              <div className="flex items-center justify-center bg-[#FB393F] w-[12rem] h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
-                <p className="text-sm">Apply Now</p>
+            <NavLink to="/counseling">
+              <div className="flex relative flex-row items-center justify-center gap-6  ml-0 md:ml-6 lg:ml-8 xl:ml-12 p-1 mb-1 font-zilla">
+                <div className="flex items-center justify-center bg-[#FB393F] w-[12rem] h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                  <p className="text-sm">Register For Counselling</p>
+                </div>
+                <div className="absolute bottom-[-1.8rem] right-[-2rem] rotate-[16deg] flex items-center justify-center">
+                  <img
+                    src={apply}
+                    alt="vector library"
+                    className="w-[60%] h-[60%]"
+                  />
+                </div>
               </div>
-              <div className="absolute bottom-[-1.8rem] right-[-2rem] rotate-[16deg] flex items-center justify-center">
-                <img
-                  src={apply}
-                  alt="vector library"
-                  className="w-[60%] h-[60%]"
-                />
-              </div>
-            </div>
             </NavLink>
           </div>
           <div className="flex items-center justify-center w-full md:w-1/2">
@@ -91,12 +505,10 @@ export default function LandingPage() {
                     some flavor and essence to our life.
                   </p>
                 </div>
-                <NavLink
-                to="/library"         
-              >
-                <div className="flex flex-row justify-end items-center">
-                  <img src={arrow} alt="arrow next" className="w-10 h-10" />
-                </div>
+                <NavLink to="/library">
+                  <div className="flex flex-row justify-end items-center">
+                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                  </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
                   <img
@@ -126,12 +538,10 @@ export default function LandingPage() {
                     successful in all life endeavors.
                   </p>
                 </div>
-                <NavLink
-                to="/meditation"         
-              >
-                <div className="flex flex-row justify-end items-center ">
-                  <img src={arrow} alt="arrow next" className="w-10 h-10" />
-                </div>
+                <NavLink to="/meditation">
+                  <div className="flex flex-row justify-end items-center ">
+                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                  </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
                   <img
@@ -161,12 +571,10 @@ export default function LandingPage() {
                     challenging times of life.
                   </p>
                 </div>
-                  <NavLink
-                to="/counseling"         
-              >
-                <div className="flex flex-row justify-end items-center ">
-                  <img src={arrow} alt="arrow next" className="w-10 h-10" />
-                </div>
+                <NavLink to="/counseling">
+                  <div className="flex flex-row justify-end items-center ">
+                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                  </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
                   <img
@@ -192,12 +600,10 @@ export default function LandingPage() {
                     be strengthened via the use of specialized approaches.
                   </p>
                 </div>
-                <NavLink
-                to="/speaker"         
-              >
-                <div className="flex flex-row justify-end items-center">
-                  <img src={arrow} alt="arrow next" className="w-10 h-10" />
-                </div>
+                <NavLink to="/speaker">
+                  <div className="flex flex-row justify-end items-center">
+                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                  </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
                   <img
@@ -211,10 +617,18 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex items-center justify-center absolute top-0 bottom-0 left-0 z-[-1]">
-          <img src={vector1} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector1}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
         <div className="flex items-center justify-center absolute top-4 right-0 z-[-1]">
-          <img src={vector2} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector2}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
       </section>
       <section className="h-full w-screen relative flex flex-col justify-center mt-4">
@@ -275,14 +689,12 @@ export default function LandingPage() {
                   etc.
                 </p>
               </div>
-              <NavLink
-                to="/team"         
-              >
-              <div className="flex relative flex-row items-center justify-center gap-6 my-2  ml-0 md:ml-2 lg:ml-6 xl:ml-10 p-1 font-zilla">
-                <div className="flex items-center justify-center bg-[#FCDA69] w-[11rem] h-[2.5rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
-                  <p className="text-xs">MEET THE TEAM</p>
+              <NavLink to="/team">
+                <div className="flex relative flex-row items-center justify-center gap-6 my-2  ml-0 md:ml-2 lg:ml-6 xl:ml-10 p-1 font-zilla">
+                  <div className="flex items-center justify-center bg-[#FCDA69] w-[11rem] h-[2.5rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                    <p className="text-xs">MEET THE TEAM</p>
+                  </div>
                 </div>
-              </div>
               </NavLink>
             </div>
           </div>
@@ -293,60 +705,72 @@ export default function LandingPage() {
               </h1>
             </div>
             <div className="flex flex-row items-center justify-center w-full h-full">
-            <div className="flex items-center justify-center w-screen p-2">
-    <Swiper
-      modules={[Navigation, Pagination, EffectFade, Autoplay]}
-      slidesPerView={5}
-      spaceBetween={50}
-      autoplay={{ delay: 2500 }}
-      breakpoints={{
-        300:{
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        500: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-        1280: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        }
-      }}
-    >
-     
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide> 
-    </Swiper>
-  </div>
+              <div className="flex justify-center w-screen p-2">
+                <Swiper
+                  modules={[Navigation, Pagination, EffectFade, Autoplay]}
+                  slidesPerView={5}
+                  spaceBetween={50}
+                  // autoplay={{ delay: 2500 }}
+                  breakpoints={{
+                    300: {
+                      slidesPerView: 1,
+                      spaceBetween: 10,
+                    },
+                    500: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 30,
+                    },
+                    1280: {
+                      slidesPerView: 4,
+                      spaceBetween: 40,
+                    },
+                  }}
+                >
+                  {ambassadors.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="flex w-full h-full items-center justify-center flex-col bg-white rounded-md border border-gray-500 p-4">
+                        <div className="w-full items-center flex justify-start">
+                          <div className="rounded-full p-1 border-2 border-red-600">
+                            <img
+                              src={item.img}
+                              alt="images"
+                              className="w-16 h-16 rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-full flex flex-col justify-start items-start p-2">
+                          <h1 className="font-bold font-monts">{item.name}</h1>
+                          <p className="font-zilla text-base">
+                            {item.position}
+                          </p>
+                        </div>
+                        <div className="p-2 flex flex-1 items-start justify-center w-full">
+                          <p className="font-zilla flex-1 text-start w-full">
+                            {item.description}
+                          </p>
+                        </div>{" "}
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-center absolute top-0 bottom-0 right-0 z-[-1]">
-          <img src={vector3} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector3}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
       </section>
       <section className="w-screen relative h-full  md:h-screen flex items-center justify-center">
@@ -369,19 +793,15 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="flex relative flex-row items-center justify-center gap-3 sm:gap-6  ml-0 md:ml-5 lg:ml-7 xl:ml-11 p-1 mb-1 font-zilla">
-            <NavLink
-                to="/events"         
-              >
-              <div className="flex items-center justify-center bg-[#FB393F] w-[8rem] h-[2.6rem] md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
-                <p className="text-sm">PAST EVENT</p>
-              </div>
+              <NavLink to="/events">
+                <div className="flex items-center justify-center bg-[#FB393F] w-[8rem] h-[2.6rem] md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                  <p className="text-sm">PAST EVENT</p>
+                </div>
               </NavLink>
-              <NavLink
-                to="/events"         
-              >
-              <div className="flex items-center justify-center bg-[#FCDA69]  w-[8rem] h-[2.6rem]  md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
-                <p className="text-sm">UPCOMING</p>
-              </div>
+              <NavLink to="/events">
+                <div className="flex items-center justify-center bg-[#FCDA69]  w-[8rem] h-[2.6rem]  md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                  <p className="text-sm">UPCOMING</p>
+                </div>
               </NavLink>
             </div>
           </div>
@@ -475,15 +895,23 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex items-center justify-center absolute top-0 bottom-0 left-0 right-0 z-[-1]">
-          <img src={vector2} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector2}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
         <div className="flex items-center justify-center absolute  bottom-4 right-0 z-[-1]">
-          <img src={vector4} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector4}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
       </section>
       <section className="w-screen h-full relative flex items-center justify-center">
         <div className="flex flex-col items-center justify-center w-full h-full">
-          <div className="flex flex-col md:flex-row items-center justify-center w-full h-full p-1 my-1">
+          <div className="flex flex-col lg:flex-row items-center justify-center w-full h-full p-1 my-1">
             <div className="flex flex-col items-center justify-center w-full  my-2 h-[24rem] p-1">
               <div className="flex flex-col items-center justify-center w-full h-[25%] p-4">
                 <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-3xl p-1">
@@ -501,26 +929,19 @@ export default function LandingPage() {
                   Notice <span className="text-[#FC762B]">Board</span>
                 </h1>
               </div>
-              <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
-                <p className="font-zilla font-normal flex items-center text-center justify-center gap-2 text-xl p-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {notices && notices.length > 0 ? (notices.map((item,index) => {
+                <Link key={index} to={item.data.noticeLink} className="flex flex-col items-center flex-1 justify-center w-full h-[18%] p-2"> 
+              <div className="flex flex-col items-center justify-center w-full h-full p-2">
+                <p className="font-zilla font-normal flex items-center text-center text-blue-600 justify-center gap-2 text-xl p-1">
+                  {item?.data?.noticeName}
                 </p>
               </div>
-              <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
-                <p className="font-zilla font-normal flex items-center text-center justify-center gap-2 text-xl p-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </Link>
+              })):( <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
+                <p className="font-zilla font-normal flex items-center text-center text-gray-800 justify-center gap-2 text-xl p-1">
+                  NO NOTICE TILL NOW PLEASE WAIT!
                 </p>
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
-                <p className="font-zilla font-normal flex items-center text-center justify-center gap-2 text-xl p-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-              </div>
-              <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
-                <p className="font-zilla font-normal flex items-center text-center justify-center gap-2 text-xl p-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-              </div>
+              </div>)}
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
@@ -530,63 +951,75 @@ export default function LandingPage() {
               </h1>
             </div>
             <div className="flex flex-row items-center justify-center w-full h-full">
-            <div className="flex items-center justify-center w-screen p-2">
-    <Swiper
-      modules={[Navigation, Pagination, EffectFade, Autoplay]}
-      slidesPerView={5}
-      spaceBetween={50}
-      autoplay={{ delay: 2500 }}
-      breakpoints={{
-        300:{
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        500: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-        1280: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        }
-      }}
-    >
-     
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
-    <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide> 
-    </Swiper>
-  </div>
+              <div className="flex justify-center w-screen p-2">
+                <Swiper
+                  modules={[Navigation, Pagination, EffectFade, Autoplay]}
+                  slidesPerView={5}
+                  spaceBetween={50}
+                  autoplay={{ delay: 2500 }}
+                  breakpoints={{
+                    300: {
+                      slidesPerView: 1,
+                      spaceBetween: 10,
+                    },
+                    500: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 30,
+                    },
+                    1280: {
+                      slidesPerView: 4,
+                      spaceBetween: 40,
+                    },
+                  }}
+                >
+                  {testimonials.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4">
+                        <div className="w-full  items-center flex justify-start">
+                          <div className="rounded-full p-1 border-2 border-red-600">
+                            <img
+                              src={item.img}
+                              alt="images"
+                              className="w-16 h-16 rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-full flex justify-between items-center flex-1 p-2">
+                          <h1 className="font-bold font-monts">{item.name}</h1>
+                        </div>
+                        <div className="p-2 h-full flex items-start flex-1 justify-center w-full">
+                          <p className="font-zilla flex-1 text-start w-full">
+                            {item.txt}
+                          </p>
+                        </div>{" "}
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-center absolute bottom-0 left-0 z-[-1]">
-          <img src={vector5} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector5}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
       </section>
-      <section className="w-screen h-full relative flex items-center justify-center mb-4" id="rewards">
+      <section
+        className="w-screen h-full relative flex items-center justify-center mb-4"
+        id="rewards"
+      >
         <div className="flex items-center justify-center w-full h-full">
           <div className="flex items-center flex-col justify-center w-full h-full gap-1">
             <div className="flex flex-col items-center justify-center  p-4 my-1">
@@ -594,10 +1027,14 @@ export default function LandingPage() {
                 Rewards&<span className="text-[#F55C4A]">Achievements</span>
               </h1>
             </div>
-            <div className="flex flex-row items-center justify-center w-full sm:w-[75%] h-full p-4 sm:p-6 gap-4">
+            <div className="flex flex-row  justify-center w-full sm:w-[75%] h-full p-4 gap-4">
               <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="p-1 mt-4">
-                  <img src={achievements} alt="avatar" className="w-20 h-20 sm:w-24 sm:h-24" />
+                  <img
+                    src={achievements}
+                    alt="avatar"
+                    className="w-20 h-20 sm:w-24 sm:h-24"
+                  />
                 </div>
                 <div className="p-1">
                   {" "}
@@ -612,10 +1049,14 @@ export default function LandingPage() {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+              <div className="w-1/2 bg-white h-full flex flex-col gap-2 items-center justify-center shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="p-1 mt-4">
                   {" "}
-                  <img src={achievements2} alt="avatar" className="w-20 h-20 sm:w-24 sm:h-24" />
+                  <img
+                    src={achievements2}
+                    alt="avatar"
+                    className="w-20 h-20 sm:w-24 sm:h-24"
+                  />
                 </div>
                 <div className="p-1">
                   {" "}
@@ -661,7 +1102,11 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex items-center justify-center absolute  bottom-[-16px]  right-0 z-[-1]">
-          <img src={vector6} alt="vector color art" className="w-96 h-96 md:w-128 md:h-128" /> 
+          <img
+            src={vector6}
+            alt="vector color art"
+            className="w-96 h-96 md:w-128 md:h-128"
+          />
         </div>
       </section>
     </div>

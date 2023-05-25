@@ -523,3 +523,12 @@ body {
 	display:flex;
 	align-items:center;
 }
+
+html{
+	scroll-padding-top: 4rem;
+}
+
+
+div{
+	border:1px solid red;
+}

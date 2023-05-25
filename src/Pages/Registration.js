@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import apply from "../assets/apply.svg";
 import vector7 from "../assets/vector7.svg";
 import vector8 from "../assets/Vector8.svg";
 import flower from "../assets/flower.svg";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import { doc, getDoc, getDocs, serverTimestamp } from "firebase/firestore";
 
 export default function Registration() {
 
-  
+  const mountedRef = useRef()
+  const params = useParams();
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -37,6 +39,12 @@ export default function Registration() {
   const [validPhone,setPValid] = React.useState(false);
   const [isdisabled, setIsDisabled] = React.useState(true)
   const navigate = useNavigate();
+  const [loading,setLoading] = React.useState(true);
+  const [value, setValue] = useState(false)
+  const [EName, setEName] = useState([]);
+  const [event,setEventName] = React.useState("");
+
+
   useEffect(()=>{
    
     if(validEmail && validName && validRoll && validPhone && validYear){
@@ -121,7 +129,7 @@ export default function Registration() {
       default:
         break;
     }
-
+  
       // if(validEmail && validName && validRoll && validPhone && validYear){
       //   console.log("true")
       //   setIsDisabled(false)
@@ -136,15 +144,93 @@ export default function Registration() {
    
   }
 
-  
+  React.useEffect(()=>{
+    
+    async function fetchListings(){
+      try{
+        const EnameRef = doc(db, "events", params.eventID);
+        const querySnap = await getDoc(EnameRef);
+        const EName = [];
+
+        EName.push({
+        id: params.eventID,     
+        data: querySnap.data(),
+        });
+         
+        setEName(EName);
+        sessionStorage.setItem("EName",JSON.stringify(EName))
+        setLoading(false)
+        
+      }catch(error){
+          toast.error(error)
+      }
+    }
+    if(EName===null&&sessionStorage.getItem("EName")===null){
+    fetchListings()}
+    else if(sessionStorage.getItem("EName")!==null){
+      
+      if(JSON.parse(sessionStorage.getItem("EName"))[0].id===params.eventID){
+      setEName(JSON.parse(sessionStorage.getItem("EName")))
+
+      setLoading(false)
+      }else{
+        fetchListings()
+      }
+    }
+    
+    
+},[])
+
+  React.useEffect(()=>{
+    async function getEventName(){
+       try {
+         const docRef = collection(db, "events");
+         const docSnap = await getDocs(docRef);
+         docSnap.forEach((doc) => {
+         if(doc?.id===params.eventID){
+                setEventName(params.eventID);           
+         }
+         console.log(event)
+
+        });
+       } catch (error) {
+         toast.error("Something went wrong")
+       }
+       
+     }
+     getEventName();
+    
+    },[params]);
+    
+    
+    React.useEffect(()=>{
+      
+      if(mountedRef.current){
+        if(event!=params.eventID){
+          navigate("/404");
+        }else{
+          setLoading(false);
+        }
+      }  
+       
+    },[value]);
+
+    useEffect(() => {
+      
+        mountedRef.current = true
+        setTimeout(setValue, 5000, true)
+      
+    },[]) 
+
 
   async function onSubmit(e){
     e.preventDefault();
     try {
       const formDataCopy = {
         ...formData,
+        timestamp: serverTimestamp(), 
       };
-      const docRef = await addDoc(collection(db, "registration"), formDataCopy);
+      const docRef = await addDoc(collection(db, `${event}`), formDataCopy);
       
        //add this to success block
     
@@ -171,6 +257,11 @@ export default function Registration() {
     <section className="h-full w-screen flex relative items-center justify-center font-zilla">
       <div className="h-full w-full flex items-center justify-center">
         <div className="h-full w-full flex flex-col items-center justify-center">
+          <h2 className="text-3xl mb-4 md:mb-2">Registration Form</h2>
+            <p className="mb-4 md:mb-2 text-center w-[85%]">
+              Welcome to Happiness Center <span className="font-extrabold">"{EName[0]?.data?.eventName}"</span> Event Registration Page!! Have
+              fun😁.
+            </p>
           <div className="h-full w-full  md:w-[65%] lg:w-[60%] xl:w-1/2 flex flex-col items-center justify-center gap-4">
             <form onSubmit={onSubmit} className="flex flex-col items-center justify-center gap-4 my-4 w-full">
             <div className="w-[85%] sm:w-[65%] md:w-[75%] lg:w-[65%] flex flex-col items-center justify-center gap-1">

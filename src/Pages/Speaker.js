@@ -5,7 +5,7 @@ import vector8 from "../assets/Vector8.svg";
 import flower5 from "../assets/flower5.svg";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function Speaker() {
@@ -143,6 +143,7 @@ export default function Speaker() {
     try {
       const formDataCopy = {
         ...formData,
+        timestamp: serverTimestamp(), 
       };
       const docRef = await addDoc(collection(db, "speaker"), formDataCopy);
       

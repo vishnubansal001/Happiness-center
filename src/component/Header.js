@@ -1,121 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import logo from "../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 import burger from "../assets/menu.png";
 import vector from '../assets/Vector.svg';
+import {useAuthStatus} from '../hooks/useAuthStatus';
 
 export default function Header() {
+  const [pageState,setPageState] = React.useState("")
   const [navbarOpen, setNavbarOpen] = React.useState(false);
-//   const lgNav = (
-//     <div className="w-screen h-full flex items-center justify-around flex-row ">
-//       <div className="flex items-center justify-center flex-row mr-10">
-//         <img src={logo} alt="happiness center logo" />
-//       </div>
-//       <div className="flex flex-row items-center justify-center p-1">
-//         <div className="flex flex-row items-center justify-center gap-12 font-monts p-1">
-//           <NavLink
-//             to="/"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             <div className="flex item-center justify-center cursor-pointer">
-//               Home
-//             </div>
-//           </NavLink>
-//           <NavLink
-//             to="/about"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             {" "}
-//             <div className="flex item-center justify-center cursor-pointer">
-//               About
-//             </div>
-//           </NavLink>
-//           <NavLink
-//             to="/counseling"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             <div className="flex item-center justify-center cursor-pointer">
-//               Counseling
-//             </div>
-//           </NavLink>
-//           <NavLink
-//             to="/events"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             {" "}
-//             <div className="flex item-center justify-center cursor-pointer">
-//               Events
-//             </div>
-//           </NavLink>
-//           <NavLink
-//             to="/team"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             <div className="flex item-center justify-center cursor-pointer">
-//               Our Team
-//             </div>
-//           </NavLink>
-//           <NavLink
-//             to="/archive"
-//             style={({ isActive }) => ({
-//               color: isActive ? "red" : "black",
-//               fontWeight: isActive ? "bold" : "normal",
-//               transition: "all 0.5s ease-in-out",
-//             })}
-//           >
-//             <div className="flex item-center justify-center cursor-pointer">
-//               Archive
-//             </div>
-//           </NavLink>
-//         </div>
-//       </div>
-//       <div className="flex flex-row items-center justify-center gap-6 font-monts p-1">
-//         <div className="flex items-center absolute justify-center bg-[#FB393F] w-[8rem] h-[2.5rem] p-2 ">
-//           <p className="text-sm">Register Now</p>
-//         </div>
-//         <div className="flex ml-[8px] mt-[10px] items-center justify-center bg-[#000000] w-[8rem] h-[2.5rem] "></div>
-//       </div>
-//     </div>
-//   );
-//   const mdNav = (
-//     <div className="w-screen h-full flex items-center justify-between flex-row ">
-//       <div className="flex items-center justify-center flex-row ml-0 sm:ml-6 md:ml-8">
-//         <img
-//           src={logo}
-//           alt="happiness center logo"
-//           class="md:h-[100%] md:w-[100%] sm:w-[80%] sm:h-[80%] h-[75%] w-[75%]"
-//         />
-//       </div>
-//       <div className="flex items-center justify-center mr-4 sm:mr-6 md:mr-8">
-//         <img
-//           src={burger}
-//           alt="burger menu"
-//           class="sm:w-10 sm:h-10 h-8 w-8   md:w-12 md:h-12"
-//         />
-//       </div>
-//     </div>
-//   );
-
+  const { loggedIn, checkingStatus } = useAuthStatus();
+  
+    useEffect(()=>{
+     
+        if(loggedIn){
+          setPageState("Admin");
+        }else{
+          setPageState("");
+        }
+    
+      
+    },[loggedIn,checkingStatus])
+     
   return (
     <React.Fragment>
       <header className="border-b border-[#fb393f]">
@@ -225,6 +130,19 @@ export default function Header() {
               >
                 <div className="flex item-center justify-center cursor-pointer">
                   Archive
+                </div>
+              </NavLink>
+              <NavLink
+                to="/admin"
+                className={(loggedIn ? " flex" : " hidden")}
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "black",
+                  fontWeight: isActive ? "bold" : "normal",
+                  transition: "all 0.5s ease-in-out",
+                })}
+              >
+                <div className={"item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " + (loggedIn ? " flex" : " hidden")}>
+                 <p>{pageState}</p>
                 </div>
               </NavLink>
             </div>
@@ -347,6 +265,19 @@ export default function Header() {
                     Archive
                   </div>
                 </NavLink>
+                <NavLink
+                to="/admin"
+                className={(loggedIn ? " flex" : " hidden")}
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "black",
+                  fontWeight: isActive ? "bold" : "normal",
+                  transition: "all 0.5s ease-in-out",
+                })}
+              >
+                <div className={"item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " + (loggedIn ? " flex" : " hidden")}>
+                 <p>{pageState}</p>
+                </div>
+              </NavLink>
               </div>
             </div>
           </nav>

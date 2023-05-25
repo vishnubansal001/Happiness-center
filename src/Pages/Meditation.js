@@ -6,7 +6,7 @@ import flower3 from "../assets/flower3.svg";
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 
 
@@ -164,6 +164,7 @@ export default function Meditation() {
    try {
     const formDataCopy = {
       ...formData,
+      timestamp: serverTimestamp(), 
     };
     const docRef = await addDoc(collection(db, "meditation"), formDataCopy);
     

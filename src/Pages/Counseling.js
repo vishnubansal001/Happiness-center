@@ -5,7 +5,7 @@ import vector13 from "../assets/Vector13.svg";
 import flower2 from "../assets/flower2.svg";
 import { toast } from "react-toastify";
 import { db } from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 export default function Counseling() {
@@ -162,6 +162,7 @@ export default function Counseling() {
    try {
     const formDataCopy = {
       ...formData,
+      timestamp: serverTimestamp(), 
     };
     const docRef = await addDoc(collection(db, "counseling"), formDataCopy);
     

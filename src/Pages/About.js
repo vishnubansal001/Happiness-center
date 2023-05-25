@@ -14,7 +14,334 @@ import { NavLink } from "react-router-dom";
 import vector3 from "../assets/Vector3.svg";
 import manav from "../assets/manav.jpg";
 
+
 export default function About() {
+  const ambassadors = [
+    {
+      name: "Dr. Sandhir Sharma", 
+      position:"Chitkara Business School" ,
+      description:"Happiness is not something ready-made. It comes from your own actions.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Dr. Shivani Chopra", 
+      position:"Chitkara Business School" ,
+      description:"The happiness of your life depends upon the quality of your thoughts.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Dr. Rashmi Aggarwal", 
+      position:"Chitkara Business School" ,
+      description:"Happiness is not the absence of problems, it's the ability to deal with them.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Dr. Dhiresh Kulsherstha", 
+      position:"Chitkara Business School" ,
+      description:"The greatest happiness you can have is knowing that you do not necessarily require happiness.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Dr. Sumit Wadhera", 
+      position:"College of Architecture and Planning" ,
+      description:"The secret of happiness is not in doing what one likes, but in liking what one does.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Prof. Atul Dutta", 
+      position:"College of Architecture and Planning" ,
+      description:"The greatest happiness you can have is knowing that you are loved for who you are.",
+      img:"https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4"
+    },
+    {
+      name: "Dr. Vani Parwez",
+      position: "Chitkara College of Education",
+      description:
+        "Happiness is not something you postpone for the future; it is something you design for the present.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sangeeta Pant",
+      position: "Chitkara College of Education",
+      description:
+        "Happiness is not having what you want. It is wanting what you have.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Vidhu Baggan",
+      position: "CUIET",
+      description:
+        "Happiness is a state of mind. It's just according to the way you look at things.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Monit Kapoor",
+      position: "CUIET",
+      description:
+        "The happiest people don't have the best of everything, they just make the best of everything.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Isha",
+      position: "ECE Department",
+      description:
+        "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Shivani Malhotra",
+      position: "ECE Department",
+      description:
+        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Gopal Meena",
+      position: "Chitkara Design School",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Akansha Ghai",
+      position: "Chitkara Design School",
+      description:
+        "The greatest happiness you can have is knowing that you are loved for who you are.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Ashutosh Mishra",
+      position: "Department of Mess Communication",
+      description:
+        "Happiness is a perfume you cannot pour on others without getting a few drops on yourself.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Gitanjali Kalia",
+      position: "Department of Mess Communication",
+      description:
+        "The happiness of your life depends upon the quality of your relationships.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Anupama",
+      position: "Psychology Department",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Gopal Meena",
+      position: "Chitkara Design School",
+      description:
+        "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Jyoti",
+      position: "Psychology Department",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sonika Bakshi",
+      position: "Department of Allied health Nursing",
+      description:
+        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sunita Singh",
+      position: "Department of Allied health Nursing",
+      description:
+        "The happiest people don't have the best of everything, they just make the best of everything.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Amandeep Kaur",
+      position: "Department of Allied health Nursing",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Manpreet Grewal",
+      position: "Law School",
+      description:
+        "Happiness is not something you can postpone for the future; it is something you design for the present",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Vijay Kumar Jadon",
+      position: "Applied Engineering-CUIET",
+      description:
+        "Happiness is not a station you arrive at, but a manner of traveling",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Sdarth Bedi",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "Happiness is a state of mind. It's just according to the way you look at things",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Chef Shankar",
+      position: "Department of Allied health Nursing",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Amandeep Kaur",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "The key to being happy is knowing you have the power to choose what to accept and what to let go",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Amit",
+      position: "IHM/CCHM,CULINARY",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harpal Singh",
+      position: "Liberal Arts",
+      description:
+        "Happiness is not the absence of problems, it's the ability to deal with them",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. PK Khosla",
+      position: "Pro Vice Chancellor",
+      description:
+        "The happiness of your life depends upon the quality of your thoughts.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "COL. Rakesh Sharma",
+      position: "Director Office of University Affairs",
+      description:
+        "The most important thing is to enjoy your life—to be happy—it's all that matters.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Rina Angel",
+      position: "Director Administration- HK & Maintenance",
+      description:
+        "The happiest people are those who are too busy to notice whether they are happy or not",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "CA. Rajat Bhatia",
+      position: "Office of Finance and accounts",
+      description:
+        "Happiness is not something you can buy, it's something you can create",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Capt. Seema Sidhu",
+      position: "Office of Residential Services",
+      description:
+        "The secret of happiness is not in doing what one likes, but in liking what one does",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Ritu Nag",
+      position: "Chief Communications Officer",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Harinder Pal Singh",
+      position: "Director of University Sports Board",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Sawaranjeet Sidhu",
+      position: "Office of Brand Communication",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harkiran Kaur",
+      position: "Chitkara Alumni Network",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Dr. Harpreet Singh Bhatia",
+      position: "Office of Talent Management",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Arpit",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Atul",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Mahima",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Ms. Parminder Kaur",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mrs. Tanushree",
+      position: "Branding Team",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+  
+    {
+      name: "Mr. Vicky Kumar",
+      position: "Residential Department",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mr. Pradeep Tripaathi",
+      position: "Senior Boys Hostels Warden",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+    {
+      name: "Mrs. Indra",
+      position: "Senior Girls Hostel Warden",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+    },
+  ]
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   return (
     <>    
@@ -97,7 +424,7 @@ export default function About() {
            </h1>
          </div>
          <div className="flex flex-row items-center justify-center w-full h-full">
-         <div className="flex items-center justify-center w-screen p-2">
+         <div className="flex  justify-center w-screen p-2">
  <Swiper
    modules={[Navigation, Pagination, EffectFade, Autoplay]}
    slidesPerView={5}
@@ -126,24 +453,32 @@ export default function About() {
      }
    }}
  >
-  
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide>
- <SwiperSlide><div className="flex items-center w-full h-full justify-center flex-col bg-white rounded-md border border-gray-500 p-4"><div className="w-full h-full p-2 items-center flex justify-start"><div className="h-full rounded-full p-1 border-2 border-red-600"><img src='https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4' alt="images" className="w-16 h-16 rounded-full"/></div></div><div className="w-full flex justify-between items-center h-full p-2"><h1 className="font-bold font-monts">Yakshit Garg</h1><p className="font-zilla text-base">Web Head</p></div><div className="p-2 flex items-center justify-center w-full"><p className="font-zilla text-start w-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p></div> </div></SwiperSlide> 
+    {ambassadors.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="flex w-full h-full items-center justify-center flex-col bg-white rounded-md border border-gray-500 p-4">
+                        <div className="w-full items-center flex justify-start">
+                          <div className="rounded-full p-1 border-2 border-red-600">
+                            <img
+                              src={item.img}
+                              alt="images"
+                              className="w-16 h-16 rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-full flex flex-col justify-start items-start p-2">
+                          <h1 className="font-bold font-monts">{item.name}</h1>
+                          <p className="font-zilla text-base">
+                            {item.position}
+                          </p>
+                        </div>
+                        <div className="p-2 flex flex-1 items-start justify-center w-full">
+                          <p className="font-zilla flex-1 text-start w-full">
+                            {item.description}
+                          </p>
+                        </div>{" "}
+                      </div>
+                    </SwiperSlide>
+                  ))}
  </Swiper>
 </div>
          </div>
