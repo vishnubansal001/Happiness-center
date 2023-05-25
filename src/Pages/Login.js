@@ -63,16 +63,19 @@ const Login = () => {
      <section className='w-screen h-full'>
       <div className="flex items-center justify-center gap-2 w-full h-full flex-col">
         <div className="flex justify-center my-12 w-full h-full items-center flex-wrap px-6 py-12 max-w-6xl mx-auto gap-8">
-        <div className="flex justify-center my-12 w-full h-full items-center flex-wrap px-6 py-12 max-w-6xl mx-auto gap-8">  
+        <div className="flex bg-gray-800 justify-center my-12 w-full h-full rounded-md items-center flex-wrap px-6 py-12 max-w-6xl mx-auto gap-8">  
           <div className="md:w-[67%] lg:w-[50%] flex justify-center items-center p-1">
             <img
               className="rounded-2xl w-full"
-              src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80"
+              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80"
               alt="key"
             />
           </div>
           <div className="w-full md:w-[67%] lg:w-[40%] flex justify-center gap-2 flex-col p-2">
-         <div className="flex items-center justify-start"><h1 className="text-3xl text-start font-bold text-black p-2">Sign In</h1></div>
+          <div class="my-3 text-2xl font-bold tracking-wider text-white text-center select-none cursor-pointer">
+            Happines Center Login Page
+          </div>
+         <div className="flex items-center justify-center"><h1 className="text-2xl text-center font-bold text-white p-2">Sign In</h1></div>
             <form onSubmit={onSubmit} className="flex  flex-col items-center justify-center gap-6">
             <div className="relative w-full p-2"> <input
                 className="w-full px-4 py-2 text-lg text-gray-700 bg-white border-gray-300 rounded-sm transition ease-in-out"

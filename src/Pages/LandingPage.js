@@ -419,7 +419,10 @@ export default function LandingPage() {
       txt: "By attending events, you'll learn practical tools and strategies for cultivating happiness and well-being in your everyday life.",
     },
   ];
+
   const [notices,setNotices] = useState(null);
+  const [rewards,setRewards] = useState(null);
+  const [leaderBoard,setleaderBoard] = useState(null);
   const [loading,setLoading] = useState(true);
 
   useEffect(()=>{
@@ -439,7 +442,6 @@ export default function LandingPage() {
             setNotices(notices);
             sessionStorage.setItem("notices",JSON.stringify(notices))
             setLoading(false)
-            console.log(notices)
           }catch(error){
               toast.error("Something Went Wrong! Network Issue")
           }
@@ -449,7 +451,70 @@ export default function LandingPage() {
       }
         else if(sessionStorage.getItem("notices")!==null){
           setNotices(JSON.parse(sessionStorage.getItem("notices")))
-          console.log(notices)
+          setLoading(false)
+          
+        }
+        
+  },[])
+  useEffect(()=>{
+    
+        async function fetchListings(){
+          try{
+            const rewardRef = collection(db, "rewards");
+            const querySnap = await getDocs(rewardRef);
+            
+            const rewards = [];
+            querySnap.forEach((doc) => {
+              return rewards.push({
+                id: doc.id,
+                data: doc.data(),
+              });
+            });
+            setRewards(rewards);
+            sessionStorage.setItem("rewards",JSON.stringify(rewards))
+            setLoading(false)
+          }catch(error){
+              toast.error("Something Went Wrong! Network Issue")
+          }
+        }
+        if(rewards===null&&sessionStorage.getItem("rewards")===null){
+        fetchListings()
+      }
+        else if(sessionStorage.getItem("rewards")!==null){
+          setRewards(JSON.parse(sessionStorage.getItem("rewards")))
+          console.log(rewards)
+          setLoading(false)
+          
+        }
+        
+  },[])
+  useEffect(()=>{
+    
+        async function fetchListings(){
+          try{
+            const leaderRef = collection(db, "leaderboard");
+            const querySnap = await getDocs(leaderRef);
+            
+            const leaders = [];
+            querySnap.forEach((doc) => {
+              return leaders.push({
+                id: doc.id,
+                data: doc.data(),
+              });
+            });
+            setleaderBoard(leaders);
+            sessionStorage.setItem("leaders",JSON.stringify(leaders))
+            setLoading(false)
+          }catch(error){
+              toast.error("Something Went Wrong! Network Issue")
+          }
+        }
+        if(leaderBoard===null&&sessionStorage.getItem("leaders")===null){
+        fetchListings()
+      }
+        else if(sessionStorage.getItem("leaders")!==null){
+          setleaderBoard(JSON.parse(sessionStorage.getItem("leaders")))
+          console.log(leaderBoard)
           setLoading(false)
           
         }
@@ -923,25 +988,27 @@ export default function LandingPage() {
                 <img src={mobile} alt="mobile" className="w-36 h-36" />
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center w-full my-2 h-[24rem] p-1">
+            <div className="flex flex-col items-start justify-start w-full my-2 h-[24rem] p-1 overflow-scroll">
               <div className="flex flex-col items-center justify-center w-full h-[25%] p-4">
                 <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-3xl p-1 w-full h-full">
                   Notice <span className="text-[#FC762B]">Board</span>
                 </h1>
               </div>
-              {notices && notices.length > 0 ? (notices.map((item,index) => {
-                <Link key={index} to={item.data.noticeLink} className="flex flex-col items-center flex-1 justify-center w-full h-[18%] p-2"> 
-              <div className="flex flex-col items-center justify-center w-full h-full p-2">
-                <p className="font-zilla font-normal flex items-center text-center text-blue-600 justify-center gap-2 text-xl p-1">
+              {loading ? <Spinner/> : ( notices && notices.length > 0 ? ( notices.map((item,index)=>(
+                <>
+                <a href={item?.data?.noticeLink} key={index} className="flex flex-1 flex-col items-center justify-center w-full h-[18%]">
+                <div className="flex flex-col items-center justify-center w-full h-full p-2">
+                <p className="font-zilla font-normal flex items-center text-center text-blue-800 justify-center gap-2 text-xl p-1">
                   {item?.data?.noticeName}
                 </p>
               </div>
-              </Link>
-              })):( <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
+              </a>
+              </>
+              )) ):( <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
                 <p className="font-zilla font-normal flex items-center text-center text-gray-800 justify-center gap-2 text-xl p-1">
                   NO NOTICE TILL NOW PLEASE WAIT!
                 </p>
-              </div>)}
+              </div>))}
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
@@ -1028,49 +1095,30 @@ export default function LandingPage() {
               </h1>
             </div>
             <div className="flex flex-row  justify-center w-full sm:w-[75%] h-full p-4 gap-4">
-              <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+             {loading ? <Spinner/> : ( rewards && rewards.length > 0 ? (rewards.map((item,index)=>(<div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] p-1 border-black">
                 <div className="p-1 mt-4">
                   <img
-                    src={achievements}
+                    src={item.data?.imgUrls[0]}
                     alt="avatar"
-                    className="w-20 h-20 sm:w-24 sm:h-24"
+                    className="w-20 h-20 sm:w-24 rounded-full sm:h-24"
                   />
                 </div>
                 <div className="p-1">
                   {" "}
-                  <h1 className="my-1 text-base md:text-lg font-zilla">
-                    Vansh
+                  <h1 className="my-1 text-base md:text-lg font-zilla capitalize">
+                    {item.data?.name}
                   </h1>
                 </div>
                 <div className="p-1">
                   {" "}
                   <p className="mb-2 text-base md:text-lg font-zilla">
-                    1st Runner Up
+                   {item.data?.position}
                   </p>
                 </div>
-              </div>
-              <div className="w-1/2 bg-white h-full flex flex-col gap-2 items-center justify-center shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
-                <div className="p-1 mt-4">
-                  {" "}
-                  <img
-                    src={achievements2}
-                    alt="avatar"
-                    className="w-20 h-20 sm:w-24 sm:h-24"
-                  />
-                </div>
-                <div className="p-1">
-                  {" "}
-                  <h1 className="my-1 text-base md:text-lg font-zilla">
-                    Vrinda
-                  </h1>
-                </div>
-                <div className="p-1">
-                  {" "}
-                  <p className="mb-2 text-base md:text-lg font-zilla">
-                    2nd Runner Up
-                  </p>
-                </div>
-              </div>
+              </div>))):(
+                             <p>NO WINNERS TILL NOW!</p>
+              ))
+              }
             </div>
             <div className="flex items-center justify-center w-full h-full p-4">
               <div className="flex flex-col bg-white items-center justify-center w-[90%] sm:w-[75%] h-full shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
@@ -1080,22 +1128,17 @@ export default function LandingPage() {
                   </h1>
                 </div>
                 <div className="flex items-center flex-col justify-center w-full h-full p-4">
+                {
+                  loading ? <Spinner/> : (leaderBoard && leaderBoard.length > 0 ? (leaderBoard.map((item,index)=>
+                  (<>
                   <div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla">1. Vrinda</p>
-                    <p className="text-xl font-zilla">Winner</p>
+                    <p className="text-xl font-zilla capitalize">{index+1}. {item?.data?.leaderName} </p>
+                    <p className="text-xl font-zilla capitalize">{item?.data?.leaderPosition}</p>
                   </div>
-                  <div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla">2. Vrinda</p>
-                    <p className="text-xl font-zilla">Winner</p>
-                  </div>
-                  <div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla">3. Vrinda</p>
-                    <p className="text-xl font-zilla">Winner</p>
-                  </div>
-                  <div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla">4. Vrinda</p>
-                    <p className="text-xl font-zilla">Winner</p>
-                  </div>
+                  </>
+                  ))):(<div className="flex items-center justify-around w-full h-full p-4">
+                    <p className="text-xl font-zilla">NO WINNERS WILL SEE IN FUTURE</p>
+                  </div>))}
                 </div>
               </div>
             </div>

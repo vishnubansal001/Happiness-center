@@ -33,9 +33,9 @@ export default function Admin() {
                 >
                   Sign Out!
                 </p>      */}
-      <div className="flex items-center justify-center gap-2 w-full h-full">
-        <div className="flex items-center justify-center gap-2 w-full h-full py-4 mt-20">
-          <div className="flex items-center justify-center w-full py-6 h-full">
+      <div className="flex items-center justify-center gap-2 w-full h-full min-h-screen">
+        <div className="flex items-center justify-center gap-2 w-full py-4 ">
+          <div className="flex items-center justify-center w-full py-6">
           <div className="flex items-start justify-start gap-2 p-4 h-full flex-col w-[20%] border-r-2">
               <div className="flex items-center justify-start py-8">
                 <h1 className="flex item-start justify-center cursor-pointer text-black text-base font-semibold whitespace-nowrap">
@@ -162,6 +162,19 @@ export default function Admin() {
                         <p className="text-sm">Notice Creation</p>
                       </div>
                     </NavLink>
+                    <NavLink
+                      to="/admin/rewards"
+                      style={({ isActive }) => ({
+                        color: isActive ? "green" : "black",
+                        fontWeight: isActive ? "bold" : "normal",
+                        transition: "all 0.5s ease-in-out",
+                      })}
+                    >
+                      <div className="flex item-center justify-center flex-row cursor-pointer gap-2 font-semibold">
+                        <p className="text-sm">Rewards Creation</p>
+                      </div>
+                    </NavLink>
+
                   </div>
                   <button
                     onClick={onLogout}
@@ -174,9 +187,11 @@ export default function Admin() {
             </div>
             <div className="flex items-center justify-center gap-2 p-4 h-full flex-col w-[80%]">
               <div className="flex items-center justify-center gap-2 p-4 h-full flex-col w-full">
-              {/* <div>
-                 <img src={spinner} loading="eager" alt="Loading..." className="h-64" />
-               </div> */}
+              <div className="flex items-center justify-center flex-col gap-2">
+                <p className="flex items-center justify-center text-center font-bold text-3xl text-gray-800">Welcome to Happiness Center Chitkara University</p>
+                <p className="flex items-center justify-center text-center font-medium text-3xl w-[80%] text-gray-600">This the admin page for the happiness center website. Please use wisely and always refresh first before adding any new event, archive photo, winners or any other listing.</p>
+                <img src={spinner} alt="logo" className="w-24 h-24"/>
+               </div>
               </div>
             </div>
           </div>

@@ -28,6 +28,7 @@ import MeditationListing from "./admin/MeditationListing";
 import SpeakerListing from "./admin/SpeakerListing";
 import LibraryListing from "./admin/LibraryListing";
 import  Notice  from "./admin/Notice";
+import Rewards from "./admin/Rewards";
 
 document.onkeydown = function (e) {
   if (e.keyCode === 123) {
@@ -122,6 +123,10 @@ const App = () => {
           <Route path="/admin/notice" element={<PrivateRoute />}>
             <Route path="/admin/notice" element={<Notice/>} />
           </Route>
+          <Route path="/admin/rewards" element={<PrivateRoute />}>
+            <Route path="/admin/rewards" element={<Rewards/>} />
+          </Route>
+          
           <Route
             path="/admin/events/listing/:eventID/happiness2023"
             element={<PrivateRoute />}

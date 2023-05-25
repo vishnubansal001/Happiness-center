@@ -512,12 +512,14 @@
 body {
 	background-color: rgb(255, 255, 255);
 }
-.scroll-remove::-webkit-scrollbar {
+*::-webkit-scrollbar {
 	display: none;
 }
-.scroll-remove {
+* {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
+	scroll-behavior: smooth;
+	
 }
 .swiper-wrapper{
 	display:flex;
@@ -526,9 +528,4 @@ body {
 
 html{
 	scroll-padding-top: 4rem;
-}
-
-
-div{
-	border:1px solid red;
 }

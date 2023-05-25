@@ -252,6 +252,18 @@ export default function RegListing() {
                         <p className="text-sm">Notice Creation</p>
                       </div>
                     </NavLink>
+                    <NavLink
+                      to="/admin/rewards"
+                      style={({ isActive }) => ({
+                        color: isActive ? "green" : "black",
+                        fontWeight: isActive ? "bold" : "normal",
+                        transition: "all 0.5s ease-in-out",
+                      })}
+                    >
+                      <div className="flex item-center justify-center flex-row cursor-pointer gap-2 font-semibold">
+                        <p className="text-sm">Rewards Creation</p>
+                      </div>
+                    </NavLink>
                   </div>
                   <button
                     onClick={onLogout}
