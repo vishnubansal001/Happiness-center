@@ -41,6 +41,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { toast } from "react-toastify";
 import Spinner from "../component/Spinner";
+import { useRef } from "react";
+import Typed from "typed.js";
 
 export default function LandingPage() {
   const ambassadors = [
@@ -378,149 +380,172 @@ export default function LandingPage() {
   const testimonials = [
     {
       id: 1,
-      name: "Vrinda",
+      name: "Vanshika",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "Joining happiness club is a great way to meet new people, learn new skills, and discover new ways to find joy and fulfillment in your life.",
+      txt: "My experience with happiness centre was sooo amazing it was wonderful! Nd I really feel grateful to be a part of happiness family....from there I came to learn about so many things...like we should be grateful for everything we have bcz those things can be need of someone.",
     },
     {
       id: 2,
-      name: "Natasha",
+      name: "Bhumi gupta",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "Whether you're looking to reduce stress, improve you mental health, or simply have more fun, happiness club has something for you.",
+      txt: "I wanted to share with you my incredible experience after joining the Chitkara Happiness Centre. It has truly been a life-changing journey, and I couldn't be more grateful for the positive impact it has had on my life.",
     },
     {
       id: 3,
-      name: "Keshav Kumar",
+      name: "Yuvika",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "happiness club is more than just a social club - it's a community of like-minded individuals who are dedicated to living their best lives.",
+      txt: "After joining happiness centre I felt positivity in me and I got to know how to be grateful for small things also. It also helped me in gaining confidence and leadership skills. Secondly in career it helped in setting up my goals and fulfilling them with enthusiasm and confidence. ",
     },
     {
       id: 4,
-      name: "Himani Goyal",
+      name: "Harshit Bhargave",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "events are designed to help you build resilience an cope with life's challenges in a healthy and positive way.",
+      txt: "After joining the center there are many changes inside me. firstly I got confidence and secondly I learned how  to create  network with people earlier I could not talk to people now I can talk to anyone comfortably and After boosting the confidence, I can speak on stage very comfortably.",
     },
     {
       id: 5,
-      name: "Vansh Kapoor",
+      name: "Gunjan",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "Joining happiness club is a great way to make new friends and connect with others who share your values and goals.",
+      txt: "This Happiness Centre has empowered me to concentrate more on my goals. Prior to joining, I often found myself easily distracted and struggled to maintain focus on my ambitions. However, with the support and guidance provided by the Manav Sir and All other Members of Happiness Centre.",
     },
     {
       id: 6,
-      name: "Ishika Singh",
+      name: "Himani",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "happiness club is a safe and supportive space where you can be yourself and share your experiences with others who understand.",
+      txt: "Happiness centre is best platform for me I get the chance to get explore the most  and got so many opportunity to work over here I got family like environment over there I donot even feel I am far away from my home  I got opportunity to express my self",
     },
     {
       id: 7,
-      name: "Shivam Mishra",
+      name: "Garvit",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-      txt: "By attending events, you'll learn practical tools and strategies for cultivating happiness and well-being in your everyday life.",
+      txt: "One of the most noticeable changes I've felt since becoming a part of this center is a significant boost in my confidence. Previously, I used to struggle with connecting with people. However, through the various activities offered at the centre, I have gained the ability to easily connect with individuals.",
     },
   ];
 
-  const [notices,setNotices] = useState(null);
-  const [rewards,setRewards] = useState(null);
-  const [leaderBoard,setleaderBoard] = useState(null);
-  const [loading,setLoading] = useState(true);
+  const [notices, setNotices] = useState(null);
+  const [rewards, setRewards] = useState(null);
+  const [leaderBoard, setleaderBoard] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [eventsT,setEventsT] = useState(110);
 
-  useEffect(()=>{
-    
-        async function fetchListings(){
-          try{
-            const noticeRef = collection(db, "notice");
-            const querySnap = await getDocs(noticeRef);
-            
-            const notices = [];
-            querySnap.forEach((doc) => {
-              return notices.push({
-                id: doc.id,
-                data: doc.data(),
-              });
-            });
-            setNotices(notices);
-            sessionStorage.setItem("notices",JSON.stringify(notices))
-            setLoading(false)
-          }catch(error){
-              toast.error("Something Went Wrong! Network Issue")
-          }
-        }
-        if(notices===null&&sessionStorage.getItem("notices")===null){
-        fetchListings()
+  useEffect(() => {
+    async function fetchListings() {
+      try {
+        const noticeRef = collection(db, "notice");
+        const querySnap = await getDocs(noticeRef);
+
+        const notices = [];
+        querySnap.forEach((doc) => {
+          return notices.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setNotices(notices);
+        sessionStorage.setItem("notices", JSON.stringify(notices));
+        setLoading(false);
+      } catch (error) {
+        toast.error("Something Went Wrong! Network Issue");
       }
-        else if(sessionStorage.getItem("notices")!==null){
-          setNotices(JSON.parse(sessionStorage.getItem("notices")))
-          setLoading(false)
-          
-        }
-        
-  },[])
-  useEffect(()=>{
-    
-        async function fetchListings(){
-          try{
-            const rewardRef = collection(db, "rewards");
-            const querySnap = await getDocs(rewardRef);
-            
-            const rewards = [];
-            querySnap.forEach((doc) => {
-              return rewards.push({
-                id: doc.id,
-                data: doc.data(),
-              });
-            });
-            setRewards(rewards);
-            sessionStorage.setItem("rewards",JSON.stringify(rewards))
-            setLoading(false)
-          }catch(error){
-              toast.error("Something Went Wrong! Network Issue")
-          }
-        }
-        if(rewards===null&&sessionStorage.getItem("rewards")===null){
-        fetchListings()
+    }
+    if (notices === null && sessionStorage.getItem("notices") === null) {
+      fetchListings();
+    } else if (sessionStorage.getItem("notices") !== null) {
+      setNotices(JSON.parse(sessionStorage.getItem("notices")));
+      setLoading(false);
+    }
+  }, []);
+  useEffect(() => {
+    async function fetchListings() {
+      try {
+        const rewardRef = collection(db, "rewards");
+        const querySnap = await getDocs(rewardRef);
+
+        const rewards = [];
+        querySnap.forEach((doc) => {
+          return rewards.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setRewards(rewards);
+        sessionStorage.setItem("rewards", JSON.stringify(rewards));
+        setLoading(false);
+      } catch (error) {
+        toast.error("Something Went Wrong! Network Issue");
       }
-        else if(sessionStorage.getItem("rewards")!==null){
-          setRewards(JSON.parse(sessionStorage.getItem("rewards")))
-          console.log(rewards)
-          setLoading(false)
-          
-        }
-        
-  },[])
-  useEffect(()=>{
-    
-        async function fetchListings(){
-          try{
-            const leaderRef = collection(db, "leaderboard");
-            const querySnap = await getDocs(leaderRef);
-            
-            const leaders = [];
-            querySnap.forEach((doc) => {
-              return leaders.push({
-                id: doc.id,
-                data: doc.data(),
-              });
-            });
-            setleaderBoard(leaders);
-            sessionStorage.setItem("leaders",JSON.stringify(leaders))
-            setLoading(false)
-          }catch(error){
-              toast.error("Something Went Wrong! Network Issue")
-          }
-        }
-        if(leaderBoard===null&&sessionStorage.getItem("leaders")===null){
-        fetchListings()
+    }
+    if (rewards === null && sessionStorage.getItem("rewards") === null) {
+      fetchListings();
+    } else if (sessionStorage.getItem("rewards") !== null) {
+      setRewards(JSON.parse(sessionStorage.getItem("rewards")));
+      console.log(rewards);
+      setLoading(false);
+    }
+  }, []);
+  useEffect(() => {
+    async function fetchListings() {
+      try {
+        const leaderRef = collection(db, "leaderboard");
+        const querySnap = await getDocs(leaderRef);
+
+        const leaders = [];
+        querySnap.forEach((doc) => {
+          return leaders.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setleaderBoard(leaders);
+        sessionStorage.setItem("leaders", JSON.stringify(leaders));
+        setLoading(false);
+      } catch (error) {
+        toast.error("Something Went Wrong! Network Issue");
       }
-        else if(sessionStorage.getItem("leaders")!==null){
-          setleaderBoard(JSON.parse(sessionStorage.getItem("leaders")))
-          console.log(leaderBoard)
-          setLoading(false)
-          
-        }
-        
-  },[])
+    }
+    if (leaderBoard === null && sessionStorage.getItem("leaders") === null) {
+      fetchListings();
+    } else if (sessionStorage.getItem("leaders") !== null) {
+      setleaderBoard(JSON.parse(sessionStorage.getItem("leaders")));
+      console.log(leaderBoard);
+      setLoading(false);
+    }
+  }, []);
   SwiperCore.use([Autoplay, Navigation, Pagination]);
+  const targetRef = useRef(null);
+  const [isCounted, setIsCounted] = useState(true);
+
+  useEffect(() => {
+    const targetNumber = eventsT; // Replace with your desired target number
+    let typed;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !isCounted) {
+          typed = new Typed(targetRef.current, {
+            strings: ['0', targetNumber.toString()],
+            startDelay: 1000, // Delay before counting starts (in milliseconds)
+            typeSpeed: 50, // Speed of counting (in milliseconds)
+            onComplete: () => {
+              console.log('Counting complete!');
+            },
+          });
+
+          setIsCounted(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    observer.observe(targetRef.current);
+
+    return () => {
+      observer.disconnect();
+      if (typed) {
+        typed.destroy();
+      }
+    };
+  }, [isCounted]);
   return (
     <div className="flex flex-col items-center font-monts gap-6">
       <section className="h-full w-screen flex flex-col items-center justify-center gap-6 relative">
@@ -530,7 +555,7 @@ export default function LandingPage() {
               There is only one <span className="text-[#F3A140]">passion</span>,
               the passion for <span className="text-[#EF1C22]">happiness.</span>
             </h1>
-            <NavLink to="/counseling">
+            {/* <NavLink to="/counseling">
               <div className="flex relative flex-row items-center justify-center gap-6  ml-0 md:ml-6 lg:ml-8 xl:ml-12 p-1 mb-1 font-zilla">
                 <div className="flex items-center justify-center bg-[#FB393F] w-[12rem] h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
                   <p className="text-sm">Register For Counselling</p>
@@ -543,7 +568,7 @@ export default function LandingPage() {
                   />
                 </div>
               </div>
-            </NavLink>
+            </NavLink> */}
           </div>
           <div className="flex items-center justify-center w-full md:w-1/2">
             <img
@@ -554,9 +579,9 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex flex-row items-center justify-center p-6 sm:p-4 md:p-6 xl:p-10 mt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-4 xl:gap-6 justify-around p-2 xs:p-6 sm:p-0 md:p-4 lg:p-1">
-            <div className="grid-cols-1  relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 xl:gap-8 justify-around p-2 xs:p-6 sm:p-0 md:p-4 lg:p-1">
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center  mt-4">
                   <img src={library} alt="arrow next" className="w-12 h-12" />
                 </div>
@@ -570,9 +595,13 @@ export default function LandingPage() {
                     some flavor and essence to our life.
                   </p>
                 </div>
-                <NavLink to="/library">
+                <NavLink to="/library" className="cursor-default">
                   <div className="flex flex-row justify-end items-center">
-                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
                   </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
@@ -584,8 +613,8 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="grid-cols-1  relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#FCDA69] h-full w-full justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#FCDA69] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center  mt-4">
                   <img
                     src={meditation}
@@ -603,9 +632,13 @@ export default function LandingPage() {
                     successful in all life endeavors.
                   </p>
                 </div>
-                <NavLink to="/meditation">
+                <NavLink to="/meditation" className="cursor-default">
                   <div className="flex flex-row justify-end items-center ">
-                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
                   </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
@@ -617,7 +650,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="grid-cols-1   relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+            {/* <div className="grid-cols-1   relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
               <div className="flex flex-col relative h-full w-full bg-[#C6FCDB]  justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="flex flex-row justify-start items-center h-full w-full mt-4">
                   <img
@@ -649,9 +682,9 @@ export default function LandingPage() {
                   />
                 </div>
               </div>
-            </div>
-            <div className="grid-cols-1  relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#FEC2D9] w-full h-full justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+            </div> */}
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#FEC2D9] w-full h-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center h-full w-full mt-4">
                   <img src={speaker} alt="arrow next" className="w-12 h-12" />
                 </div>
@@ -665,9 +698,13 @@ export default function LandingPage() {
                     be strengthened via the use of specialized approaches.
                   </p>
                 </div>
-                <NavLink to="/speaker">
+                <NavLink to="/speaker" className="cursor-default">
                   <div className="flex flex-row justify-end items-center">
-                    <img src={arrow} alt="arrow next" className="w-10 h-10" />
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
                   </div>
                 </NavLink>
                 <div className="absolute top-2 right-2 flex items-center justify-center">
@@ -756,7 +793,7 @@ export default function LandingPage() {
               </div>
               <NavLink to="/team">
                 <div className="flex relative flex-row items-center justify-center gap-6 my-2  ml-0 md:ml-2 lg:ml-6 xl:ml-10 p-1 font-zilla">
-                  <div className="flex items-center justify-center bg-[#FCDA69] w-[11rem] h-[2.5rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                  <div className="flex items-center justify-center bg-[#FCDA69] w-[11rem] h-[2.5rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)] transition-all duration-300 ease-in-out hover:shadow-none">
                     <p className="text-xs">MEET THE TEAM</p>
                   </div>
                 </div>
@@ -909,8 +946,8 @@ export default function LandingPage() {
                       </p>
                     </div>
                     <div className="flex items-center justify-center p-1">
-                      <p className="font-normal text-base xs:text-lg sm:text-xl lg:text-2xl">
-                        20
+                      <p ref={targetRef} className="font-normal text-base xs:text-lg sm:text-xl lg:text-2xl">
+                        {eventsT}
                       </p>
                     </div>
                   </div>
@@ -994,21 +1031,31 @@ export default function LandingPage() {
                   Notice <span className="text-[#FC762B]">Board</span>
                 </h1>
               </div>
-              {loading ? <Spinner/> : ( notices && notices.length > 0 ? ( notices.map((item,index)=>(
-                <>
-                <a href={item?.data?.noticeLink} key={index} className="flex flex-1 flex-col items-center justify-center w-full h-[18%]">
-                <div className="flex flex-col items-center justify-start w-full h-full p-2">
-                <p className="font-zilla font-normal flex items-center text-center text-blue-800 justify-center gap-2 text-xl p-1">
-                  {item?.data?.noticeName}
-                </p>
-              </div>
-              </a>
-              </>
-              )) ):( <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
-                <p className="font-zilla font-normal flex items-center text-center text-gray-800 justify-center gap-2 text-xl p-1">
-                  NO NOTICE TILL NOW PLEASE WAIT!
-                </p>
-              </div>))}
+              {loading ? (
+                <Spinner />
+              ) : notices && notices.length > 0 ? (
+                notices.map((item, index) => (
+                  <>
+                    <a
+                      href={item?.data?.noticeLink}
+                      key={index}
+                      className="flex flex-1 flex-col items-center justify-center w-full h-[18%]"
+                    >
+                      <div className="flex flex-col items-center justify-start w-full h-full p-2">
+                        <p className="font-zilla font-normal flex items-center text-center text-blue-800 justify-center gap-2 text-xl p-1">
+                          {item?.data?.noticeName}
+                        </p>
+                      </div>
+                    </a>
+                  </>
+                ))
+              ) : (
+                <div className="flex flex-col items-center justify-center w-full h-[18%] p-2">
+                  <p className="font-zilla font-normal flex items-center text-center text-gray-800 justify-center gap-2 text-xl p-1">
+                    NO NOTICE TILL NOW PLEASE WAIT!
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
@@ -1095,30 +1142,35 @@ export default function LandingPage() {
               </h1>
             </div>
             <div className="flex flex-row  justify-center w-full sm:w-[75%] h-full p-4 gap-4">
-             {loading ? <Spinner/> : ( rewards && rewards.length > 0 ? (rewards.map((item,index)=>(<div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] p-1 border-black">
-                <div className="p-1 mt-4">
-                  <img
-                    src={item.data?.imgUrls[0]}
-                    alt="avatar"
-                    className="w-20 h-20 sm:w-24 rounded-full sm:h-24"
-                  />
-                </div>
-                <div className="p-1">
-                  {" "}
-                  <h1 className="my-1 text-base md:text-lg font-zilla capitalize">
-                    {item.data?.name}
-                  </h1>
-                </div>
-                <div className="p-1">
-                  {" "}
-                  <p className="mb-2 text-base md:text-lg font-zilla">
-                   {item.data?.position}
-                  </p>
-                </div>
-              </div>))):(
-                             <p>NO WINNERS TILL NOW!</p>
-              ))
-              }
+              {loading ? (
+                <Spinner />
+              ) : rewards && rewards.length > 0 ? (
+                rewards.map((item, index) => (
+                  <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] p-1 border-black">
+                    <div className="p-1 mt-4">
+                      <img
+                        src={item.data?.imgUrls[0]}
+                        alt="avatar"
+                        className="w-20 h-20 sm:w-24 rounded-full sm:h-24"
+                      />
+                    </div>
+                    <div className="p-1">
+                      {" "}
+                      <h1 className="my-1 text-base md:text-lg font-zilla capitalize">
+                        {item.data?.name}
+                      </h1>
+                    </div>
+                    <div className="p-1">
+                      {" "}
+                      <p className="mb-2 text-base md:text-lg font-zilla">
+                        {item.data?.position}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>NO WINNERS TILL NOW!</p>
+              )}
             </div>
             <div className="flex items-center justify-center w-full h-full p-4">
               <div className="flex flex-col bg-white items-center justify-center w-[90%] sm:w-[75%] h-full shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
@@ -1128,17 +1180,28 @@ export default function LandingPage() {
                   </h1>
                 </div>
                 <div className="flex items-center flex-col justify-center w-full h-full p-4">
-                {
-                  loading ? <Spinner/> : (leaderBoard && leaderBoard.length > 0 ? (leaderBoard.map((item,index)=>
-                  (<>
-                  <div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla capitalize">{index+1}. {item?.data?.leaderName} </p>
-                    <p className="text-xl font-zilla capitalize">{item?.data?.leaderPosition}</p>
-                  </div>
-                  </>
-                  ))):(<div className="flex items-center justify-around w-full h-full p-4">
-                    <p className="text-xl font-zilla">NO WINNERS WILL SEE IN FUTURE</p>
-                  </div>))}
+                  {loading ? (
+                    <Spinner />
+                  ) : leaderBoard && leaderBoard.length > 0 ? (
+                    leaderBoard.map((item, index) => (
+                      <>
+                        <div className="flex items-center justify-around w-full h-full p-4">
+                          <p className="text-xl font-zilla capitalize">
+                            {index + 1}. {item?.data?.leaderName}{" "}
+                          </p>
+                          <p className="text-xl font-zilla capitalize">
+                            {item?.data?.leaderPosition}
+                          </p>
+                        </div>
+                      </>
+                    ))
+                  ) : (
+                    <div className="flex items-center justify-around w-full h-full p-4">
+                      <p className="text-xl font-zilla">
+                        NO WINNERS WILL SEE IN FUTURE
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,46 +1,42 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 import burger from "../assets/menu.png";
-import vector from '../assets/Vector.svg';
-import {useAuthStatus} from '../hooks/useAuthStatus';
+import vector from "../assets/Vector.svg";
+import { useAuthStatus } from "../hooks/useAuthStatus";
 
 export default function Header() {
-  const [pageState,setPageState] = React.useState("")
+  const [pageState, setPageState] = React.useState("");
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { loggedIn, checkingStatus } = useAuthStatus();
-  
-    useEffect(()=>{
-     
-        if(loggedIn){
-          setPageState("Admin");
-        }else{
-          setPageState("");
-        }
-    
-      
-    },[loggedIn,checkingStatus])
-     
+
+  useEffect(() => {
+    if (loggedIn) {
+      setPageState("Admin");
+    } else {
+      setPageState("");
+    }
+  }, [loggedIn, checkingStatus]);
+
   return (
     <React.Fragment>
       <header className="border-b border-[#fb393f]">
         <nav className="relative px-4 py-4 flex justify-between items-center">
-        <NavLink
-                to="/"
-                style={({ isActive }) => ({
-                  color: isActive ? "red" : "black",
-                  fontWeight: isActive ? "bold" : "normal",
-                  transition: "all 0.5s ease-in-out",
-                })}
-              >
-          <div className="flex items-center justify-center flex-row lg:ml-4 lg:mr-11">
-            <img
-              src={logo}
-              alt="happiness"
-              className="md:h-[95%] md:w-[95%] sm:w-[80%] sm:h-[80%] h-[75%] w-[75%]"
-
-            />
-          </div>
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "black",
+              fontWeight: isActive ? "bold" : "normal",
+              transition: "all 0.5s ease-in-out",
+            })}
+          >
+            <div className="flex items-center justify-center flex-row lg:ml-4 lg:mr-11">
+              <img
+                src={logo}
+                alt="happiness"
+                className="md:h-[95%] md:w-[95%] sm:w-[80%] sm:h-[80%] h-[75%] w-[75%]"
+              />
+            </div>
           </NavLink>
           <div className="lg:hidden">
             <button
@@ -83,7 +79,7 @@ export default function Header() {
                   About
                 </div>
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/counseling"
                 style={({ isActive }) => ({
                   color: isActive ? "red" : "black",
@@ -94,7 +90,7 @@ export default function Header() {
                 <div className="flex item-center justify-center cursor-pointer">
                   Counseling
                 </div>
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/events"
                 style={({ isActive }) => ({
@@ -134,26 +130,29 @@ export default function Header() {
               </NavLink>
               <NavLink
                 to="/admin"
-                className={(loggedIn ? " flex" : " hidden")}
+                className={loggedIn ? " flex" : " hidden"}
                 style={({ isActive }) => ({
                   color: isActive ? "red" : "black",
                   fontWeight: isActive ? "bold" : "normal",
                   transition: "all 0.5s ease-in-out",
                 })}
               >
-                <div className={"item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " + (loggedIn ? " flex" : " hidden")}>
-                 <p>{pageState}</p>
+                <div
+                  className={
+                    "item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " +
+                    (loggedIn ? " flex" : " hidden")
+                  }
+                >
+                  <p>{pageState}</p>
                 </div>
               </NavLink>
             </div>
           </div>
-          <div className="hidden  lg:flex flex-row items-center justify-center gap-6 font-zilla p-1">
-          <a
-                href="/#rewards"
-              >
-            <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 shadow-[4px_4px_rgba(0,0,0,1)]">
-                 <p className="text-[.9rem]">Achievements</p>
-            </div>
+          <div className="hidden lg:flex flex-row items-center justify-center gap-6 font-zilla p-1">
+            <a href="/#rewards">
+              <div className="flex items-center  justify-center bg-[#FCDA69] w-[8rem] h-[2.5rem] p-3 transition-all duration-300 ease-in-out hover:shadow-none shadow-[4px_4px_rgba(0,0,0,1)]">
+                <p className="text-[.9rem]">Achievements</p>
+              </div>
             </a>
           </div>
         </nav>
@@ -163,7 +162,7 @@ export default function Header() {
             (navbarOpen ? "flex" : " hidden")
           }
         >
-           <div className="navbar-backdrop backdrop-blur-sm fixed inset-0 bg-black/40 transition duration-200 ease-in-out"></div>
+          <div className="navbar-backdrop backdrop-blur-sm fixed inset-0 bg-black/40 transition duration-200 ease-in-out"></div>
           <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
             <div className="flex items-center mb-8">
               <a className="mr-auto text-3xl font-bold leading-none" href="#!">
@@ -216,7 +215,7 @@ export default function Header() {
                     About
                   </div>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/counseling"
                   style={({ isActive }) => ({
                     color: isActive ? "red" : "black",
@@ -227,7 +226,7 @@ export default function Header() {
                   <div className="flex item-center justify-center cursor-pointer">
                     Counseling
                   </div>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   to="/events"
                   style={({ isActive }) => ({
@@ -266,24 +265,29 @@ export default function Header() {
                   </div>
                 </NavLink>
                 <NavLink
-                to="/admin"
-                className={(loggedIn ? " flex" : " hidden")}
-                style={({ isActive }) => ({
-                  color: isActive ? "red" : "black",
-                  fontWeight: isActive ? "bold" : "normal",
-                  transition: "all 0.5s ease-in-out",
-                })}
-              >
-                <div className={"item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " + (loggedIn ? " flex" : " hidden")}>
-                 <p>{pageState}</p>
-                </div>
-              </NavLink>
+                  to="/admin"
+                  className={loggedIn ? " flex" : " hidden"}
+                  style={({ isActive }) => ({
+                    color: isActive ? "red" : "black",
+                    fontWeight: isActive ? "bold" : "normal",
+                    transition: "all 0.5s ease-in-out",
+                  })}
+                >
+                  <div
+                    className={
+                      "item-center justify-center flex-row cursor-pointer text-[1rem] gap-2 font-semibold " +
+                      (loggedIn ? " flex" : " hidden")
+                    }
+                  >
+                    <p>{pageState}</p>
+                  </div>
+                </NavLink>
               </div>
             </div>
           </nav>
         </div>
         <div className="flex items-center justify-center absolute top-0 right-0 z-[-1]">
-          <img src={vector} alt="vector color art" className="w-24 h-24" /> 
+          <img src={vector} alt="vector color art" className="w-24 h-24" />
         </div>
       </header>
     </React.Fragment>
