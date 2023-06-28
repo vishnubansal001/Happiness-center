@@ -2,7 +2,7 @@ import { getAuth } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import React from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import spinner from '../assets/spinner.svg'
+import spinner from "../assets/spinner.svg";
 import { db } from "../firebase";
 
 export default function Admin() {
@@ -36,17 +36,20 @@ export default function Admin() {
       <div className="flex items-center justify-center gap-2 w-full h-full min-h-screen">
         <div className="flex items-center justify-center gap-2 w-full py-4 ">
           <div className="flex items-center justify-center w-full py-6">
-          <div className="flex items-start justify-start gap-2 p-4 h-full flex-col w-[20%] border-r-2">
+            <div className="flex items-start justify-start gap-2 p-4 h-full flex-col w-[20%] border-r-2">
               <div className="flex items-center justify-start py-8">
                 <h1 className="flex item-start justify-center cursor-pointer text-black text-base font-semibold whitespace-nowrap">
-                <NavLink
-                      to="/admin"
-                      style={({ isActive }) => ({
-                        color: isActive ? "green" : "black",
-                        
-                        transition: "all 0.5s ease-in-out",
-                      })}
-                    > ADMIN PANEL</NavLink>
+                  <NavLink
+                    to="/admin"
+                    style={({ isActive }) => ({
+                      color: isActive ? "green" : "black",
+
+                      transition: "all 0.5s ease-in-out",
+                    })}
+                  >
+                    {" "}
+                    ADMIN PANEL
+                  </NavLink>
                 </h1>
               </div>
               <div className="flex items-start justify-center flex-col">
@@ -174,7 +177,6 @@ export default function Admin() {
                         <p className="text-sm">Rewards Creation</p>
                       </div>
                     </NavLink>
-
                   </div>
                   <button
                     onClick={onLogout}
@@ -187,11 +189,17 @@ export default function Admin() {
             </div>
             <div className="flex items-center justify-center gap-2 p-4 h-full flex-col w-[80%]">
               <div className="flex items-center justify-center gap-2 p-4 h-full flex-col w-full">
-              <div className="flex items-center justify-center flex-col gap-2">
-                <p className="flex items-center justify-center text-center font-bold text-3xl text-gray-800">Welcome to Happiness Center Chitkara University</p>
-                <p className="flex items-center justify-center text-center font-medium text-3xl w-[80%] text-gray-600">This the admin page for the happiness center website. Please use wisely and always refresh first before adding any new event, archive photo, winners or any other listing.</p>
-                <img src={spinner} alt="logo" className="w-24 h-24"/>
-               </div>
+                <div className="flex items-center justify-center flex-col gap-2">
+                  <p className="flex items-center justify-center text-center font-bold text-3xl text-gray-800">
+                    Welcome to Happiness Center Chitkara University
+                  </p>
+                  <p className="flex items-center justify-center text-center font-medium text-3xl w-[80%] text-gray-600">
+                    This the admin page for the happiness center website. Please
+                    use wisely and always refresh first before adding any new
+                    event, archive photo, winners or any other listing.
+                  </p>
+                  <img src={spinner} alt="logo" className="w-24 h-24" />
+                </div>
               </div>
             </div>
           </div>

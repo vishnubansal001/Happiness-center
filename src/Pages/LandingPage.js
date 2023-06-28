@@ -43,13 +43,13 @@ import { toast } from "react-toastify";
 import Spinner from "../component/Spinner";
 import { useRef } from "react";
 import Typed from "typed.js";
-import harshit from '../assets/harshit.jpg';
-import garvit from '../assets/garvit.jpg';
-import vanshika from '../assets/vanshika.jpg';
-import yuvika from '../assets/yuvika.jpg';
-import himani from '../assets/himani.jpg';
-import gunjan from '../assets/gunjan.jpg';
-import rashim from '../assets/rashim.jpg';
+import harshit from "../assets/harshit.jpg";
+import garvit from "../assets/garvit.jpg";
+import vanshika from "../assets/vanshika.jpg";
+import yuvika from "../assets/yuvika.jpg";
+import himani from "../assets/himani.jpg";
+import gunjan from "../assets/gunjan.jpg";
+import rashim from "../assets/rashim.jpg";
 
 export default function LandingPage() {
   const ambassadors = [
@@ -433,7 +433,7 @@ export default function LandingPage() {
   const [rewards, setRewards] = useState(null);
   const [leaderBoard, setleaderBoard] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [eventsT,setEventsT] = useState(110);
+  const [eventsT, setEventsT] = useState(110);
 
   useEffect(() => {
     async function fetchListings() {
@@ -530,11 +530,11 @@ export default function LandingPage() {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !isCounted) {
           typed = new Typed(targetRef.current, {
-            strings: ['0', targetNumber.toString()],
+            strings: ["0", targetNumber.toString()],
             startDelay: 1000, // Delay before counting starts (in milliseconds)
             typeSpeed: 50, // Speed of counting (in milliseconds)
             onComplete: () => {
-              console.log('Counting complete!');
+              console.log("Counting complete!");
             },
           });
 
@@ -953,7 +953,10 @@ export default function LandingPage() {
                       </p>
                     </div>
                     <div className="flex items-center justify-center p-1">
-                      <p ref={targetRef} className="font-normal text-base xs:text-lg sm:text-xl lg:text-2xl">
+                      <p
+                        ref={targetRef}
+                        className="font-normal text-base xs:text-lg sm:text-xl lg:text-2xl"
+                      >
                         {eventsT}
                       </p>
                     </div>
