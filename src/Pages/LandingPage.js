@@ -43,6 +43,13 @@ import { toast } from "react-toastify";
 import Spinner from "../component/Spinner";
 import { useRef } from "react";
 import Typed from "typed.js";
+import harshit from '../assets/harshit.jpg';
+import garvit from '../assets/garvit.jpg';
+import vanshika from '../assets/vanshika.jpg';
+import yuvika from '../assets/yuvika.jpg';
+import himani from '../assets/himani.jpg';
+import gunjan from '../assets/gunjan.jpg';
+import rashim from '../assets/rashim.jpg';
 
 export default function LandingPage() {
   const ambassadors = [
@@ -381,43 +388,43 @@ export default function LandingPage() {
     {
       id: 1,
       name: "Vanshika",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: vanshika,
       txt: "My experience with happiness centre was sooo amazing it was wonderful! Nd I really feel grateful to be a part of happiness family....from there I came to learn about so many things...like we should be grateful for everything we have bcz those things can be need of someone.",
     },
     {
       id: 2,
-      name: "Bhumi gupta",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      name: "Rashim Bindal",
+      img: rashim,
       txt: "I wanted to share with you my incredible experience after joining the Chitkara Happiness Centre. It has truly been a life-changing journey, and I couldn't be more grateful for the positive impact it has had on my life.",
     },
     {
       id: 3,
       name: "Yuvika",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: yuvika,
       txt: "After joining happiness centre I felt positivity in me and I got to know how to be grateful for small things also. It also helped me in gaining confidence and leadership skills. Secondly in career it helped in setting up my goals and fulfilling them with enthusiasm and confidence. ",
     },
     {
       id: 4,
       name: "Harshit Bhargave",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: harshit,
       txt: "After joining the center there are many changes inside me. firstly I got confidence and secondly I learned how  to create  network with people earlier I could not talk to people now I can talk to anyone comfortably and After boosting the confidence, I can speak on stage very comfortably.",
     },
     {
       id: 5,
       name: "Gunjan",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: gunjan,
       txt: "This Happiness Centre has empowered me to concentrate more on my goals. Prior to joining, I often found myself easily distracted and struggled to maintain focus on my ambitions. However, with the support and guidance provided by the Manav Sir and All other Members of Happiness Centre.",
     },
     {
       id: 6,
       name: "Himani",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: himani,
       txt: "Happiness centre is best platform for me I get the chance to get explore the most  and got so many opportunity to work over here I got family like environment over there I donot even feel I am far away from my home  I got opportunity to express my self",
     },
     {
       id: 7,
       name: "Garvit",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: garvit,
       txt: "One of the most noticeable changes I've felt since becoming a part of this center is a significant boost in my confidence. Previously, I used to struggle with connecting with people. However, through the various activities offered at the centre, I have gained the ability to easily connect with individuals.",
     },
   ];
@@ -1102,7 +1109,7 @@ export default function LandingPage() {
                             <img
                               src={item.img}
                               alt="images"
-                              className="w-16 h-16 rounded-full"
+                              className="w-20 h-20 rounded-full"
                             />
                           </div>
                         </div>
