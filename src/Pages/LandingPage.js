@@ -558,7 +558,7 @@ export default function LandingPage() {
       <section className="h-full w-screen flex flex-col items-center justify-center gap-6 relative">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center md:mb-8 md:mt-2 my-0 mb-2 max-w-[90rem]">
           <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 w-full h-full md:w-1/2 justify-center">
-            <h1 className="font-extrabold text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ml-0 md:ml-6 lg:ml-8 xl:ml-12 p-6 sm:p-8 md:p-0 text-center md:text-start mt-2">
+            <h1 className="font-extrabold text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ml-0 md:ml-6 lg:ml-8 xl:ml-12 p-6 sm:p-8 md:p-0 text-center md:text-start mt-2 cursor-default select-none">
               There is only one <span className="text-[#F3A140]">passion</span>,
               the passion for <span className="text-[#EF1C22]">happiness.</span>
             </h1>
@@ -770,7 +770,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col items-center md:items-start md:gap-6 w-full h-full md:w-[54%] justify-center mb-4  md:my-8">
               <div className="flex items-center justify-center">
-                <h1 className="font-extrabold text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ml-0 md:ml-2 lg:ml-4 xl:ml-6 p-4 sm:p-6 md:p-2 lg:p-1 text-center md:text-start">
+                <h1 className="font-extrabold text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ml-0 md:ml-2 lg:ml-4 xl:ml-6 p-4 sm:p-6 md:p-2 lg:p-1 text-center md:text-start select-none cursor-pointer">
                   A <span className="text-[#F3A140]">smile</span>, is always the
                   best form of{" "}
                   <span className="text-[#EF1C22]">introduction.</span>
@@ -809,7 +809,7 @@ export default function LandingPage() {
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
             <div className="flex flex-col items-center justify-center w-full h-full p-4">
-              <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-xl sm:text-4xl p-1 uppercase">
+              <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-xl sm:text-4xl p-1 uppercase select-none cursor-pointer">
                 OUR <span className="text-[#EF1C22]"> AMBASSADORS</span>
               </h1>
             </div>
@@ -886,7 +886,7 @@ export default function LandingPage() {
         <div className="flex h-full w-full flex-col md:flex-row items-center justify-center">
           <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 w-full h-full md:w-[40%] justify-center my-6 md:my-0">
             <div className="flex items-center justify-center relative ml-0 md:ml-5 lg:ml-7 xl:ml-11 p-1 mt-2">
-              <h1 className="font-extrabold text-4xl xs:text-5xl sm:text-5xl md:text-[2.5rem] lg:text-5xl xl:text-7xl  sm:p-4 md:p-0 text-center md:text-start p-1">
+              <h1 className="font-extrabold text-4xl xs:text-5xl sm:text-5xl md:text-[2.5rem] lg:text-5xl xl:text-7xl  sm:p-4 md:p-0 text-center md:text-start p-1 select-none cursor-pointer">
                 WEEKLY
                 <span className="text-[#F3A140]">
                   <br />
@@ -927,7 +927,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="h-[25%] w-full bg-[#FB393F] flex items-center justify-center md:justify-start p-1 border-t-[1px] border-black">
-                  <h1 className="font-semibold text-2xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl md:ml-2 p-4 md:p-0">
+                  <h1 className="text-2xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl md:ml-2 p-4 md:p-0 font-semibold select-none cursor-pointer">
                     EVENTS
                   </h1>
                 </div>
@@ -970,7 +970,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="h-[25%] w-full bg-[#FCDA69] flex items-center justify-center md:justify-start p-1  border-t-[1px] border-black">
-                  <h1 className="font-semibold text-2xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl md:ml-2 p-4 md:p-0">
+                  <h1 className="text-2xl xs:text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl md:ml-2 p-4 md:p-0 font-semibold select-none cursor-pointer">
                     CEP/CLASSES
                   </h1>
                 </div>
@@ -1026,7 +1026,7 @@ export default function LandingPage() {
           <div className="flex flex-col lg:flex-row items-center justify-center w-full h-full p-1 my-1">
             <div className="flex flex-col items-center justify-center w-full  my-2 h-[24rem] p-1">
               <div className="flex flex-col items-center justify-center w-full h-[25%] p-4">
-                <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-3xl p-1">
+                <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-3xl p-1 select-none cursor-pointer">
                   Happiness <span className="text-[#FB393F]"> Quotes</span>
                 </h1>
               </div>
@@ -1037,7 +1037,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col items-start justify-start w-full my-2 h-[24rem] p-1 overflow-scroll">
               <div className="flex flex-col items-center justify-center w-full h-[25%] p-4">
-                <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-3xl p-1 w-full h-full">
+                <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-3xl p-1 w-full h-full select-none cursor-pointer">
                   Notice <span className="text-[#FC762B]">Board</span>
                 </h1>
               </div>
@@ -1070,7 +1070,7 @@ export default function LandingPage() {
           </div>
           <div className="flex flex-col items-center justify-center w-full h-full p-4">
             <div className="flex flex-col items-center justify-center w-full h-full p-4">
-              <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-3xl sm:text-4xl p-1 uppercase text-[#FC762B]">
+              <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-3xl sm:text-4xl p-1 uppercase text-[#FC762B] select-none cursor-pointer">
                 Testimonials
               </h1>
             </div>
@@ -1147,7 +1147,7 @@ export default function LandingPage() {
         <div className="flex items-center justify-center w-full h-full">
           <div className="flex items-center flex-col justify-center w-full h-full gap-1">
             <div className="flex flex-col items-center justify-center  p-4 my-1">
-              <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-4xl p-1 uppercase ">
+              <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-4xl p-1 uppercase select-none cursor-pointer ">
                 Rewards&<span className="text-[#F55C4A]">Achievements</span>
               </h1>
             </div>
@@ -1156,7 +1156,7 @@ export default function LandingPage() {
                 <Spinner />
               ) : rewards && rewards.length > 0 ? (
                 rewards.map((item, index) => (
-                  <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] p-1 border-black">
+                  <div className="w-1/2 bg-white h-full flex flex-col items-center justify-center gap-2 hover:shadow-none transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] p-1 border-black">
                     <div className="p-1 mt-4">
                       <img
                         src={item.data?.imgUrls[0]}
@@ -1183,9 +1183,9 @@ export default function LandingPage() {
               )}
             </div>
             <div className="flex items-center justify-center w-full h-full p-4">
-              <div className="flex flex-col bg-white items-center justify-center w-[90%] sm:w-[75%] h-full shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+              <div className="flex flex-col bg-white items-center justify-center w-[90%] sm:w-[75%] h-full hover:shadow-none transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="p-1 mt-4">
-                  <h1 className="my-1 text-base md:text-lg font-monts uppercase">
+                  <h1 className="my-1 text-base md:text-lg font-monts uppercase hover:underline font-semibold select-none cursor-pointer">
                     LeaderBoard
                   </h1>
                 </div>
