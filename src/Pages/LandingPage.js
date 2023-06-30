@@ -903,12 +903,12 @@ export default function LandingPage() {
             </div>
             <div className="flex relative flex-row items-center justify-center gap-3 sm:gap-6  ml-0 md:ml-5 lg:ml-7 xl:ml-11 p-1 mb-1 font-zilla">
               <NavLink to="/events">
-                <div className="flex items-center justify-center bg-[#FB393F] w-[8rem] h-[2.6rem] md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                <div className="flex items-center justify-center bg-[#FB393F] w-[8rem] h-[2.6rem] md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 hover:shadow-none transition-all duration-300 ease-in-out shadow-[4px_4px_rgba(0,0,0,1)]">
                   <p className="text-sm">PAST EVENT</p>
                 </div>
               </NavLink>
               <NavLink to="/events">
-                <div className="flex items-center justify-center bg-[#FCDA69]  w-[8rem] h-[2.6rem]  md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 shadow-[4px_4px_rgba(0,0,0,1)]">
+                <div className="flex items-center justify-center bg-[#FCDA69]  w-[8rem] h-[2.6rem]  md:w-[7rem] md:h-[2.5rem] lg:w-[8rem] lg:h-[2.6rem] p-2 hover:shadow-none transition-all duration-300 ease-in-out shadow-[4px_4px_rgba(0,0,0,1)]">
                   <p className="text-sm">UPCOMING</p>
                 </div>
               </NavLink>
@@ -916,7 +916,7 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center justify-center w-full h-full md:w-[60%] my-8 md:m-0">
             <div className="flex flex-col sm:flex-row h-full w-full items-center justify-center gap-4 p-4 md:gap-4 md:p-2 lg:gap-4 lg:p-4 xl:gap-6 xl:p-6">
-              <div className="flex flex-col h-[70%] lg:h-[75%] bg-white xl:h-[80%] w-4/5 md:w-1/2 items-center justify-center shadow-[5px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+              <div className="flex flex-col h-[70%] lg:h-[75%] bg-white xl:h-[80%] w-4/5 md:w-1/2 items-center justify-center hover:shadow-none transition-all duration-300 ease-in-out shadow-[5px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="h-[25%] w-full p-1">
                   <div className="flex items-center justify-start p-1 w-full h-full">
                     <img
@@ -963,7 +963,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col h-[70%] bg-white lg:h-[75%] xl:h-[80%] w-4/5 md:w-1/2 items-center justify-center shadow-[5px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+              <div className="flex flex-col h-[70%] bg-white lg:h-[75%] xl:h-[80%] w-4/5 md:w-1/2 items-center justify-center hover:shadow-none transition-all duration-300 ease-in-out shadow-[5px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="h-[25%] w-full p-1">
                   <div className="flex items-center justify-start p-1 w-full h-full">
                     <img src={cep} alt="cep" className="w-16 h-16 ml-2 m-1" />
