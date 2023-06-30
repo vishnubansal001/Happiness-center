@@ -16,7 +16,7 @@ export default function AdminNav() {
           <NavLink
             to="/admin"
             style={({ isActive }) => ({
-              color: isActive ? "green" : "black",
+              color: isActive ? "red" : "black",
 
               transition: "all 0.5s ease-in-out",
             })}
@@ -32,7 +32,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/events/listing"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -45,7 +45,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/events/create"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -57,7 +57,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/events/past"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -70,7 +70,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/events/archive"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -82,7 +82,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/speaker-listing"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -94,7 +94,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/counseling-listing"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -106,7 +106,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/meditation-listing"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -118,7 +118,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/library-listing"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -130,7 +130,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/notice"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
@@ -142,7 +142,7 @@ export default function AdminNav() {
             <NavLink
               to="/admin/rewards"
               style={({ isActive }) => ({
-                color: isActive ? "green" : "black",
+                color: isActive ? "red" : "black",
                 fontWeight: isActive ? "bold" : "normal",
                 transition: "all 0.5s ease-in-out",
               })}
