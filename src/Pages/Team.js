@@ -41,7 +41,7 @@ export default function Team() {
     },
     {
       name: "Shivam Mishra",
-      position: "Event Manager",
+      position: "Event Management Head",
       linkedin: "https://www.linkedin.com/in/shivam-mishra2005",
       insta: "https://instagram.com/shivamkmishra?igshid=NGExMmI2YTkyZg== ",
       img: shivam,
@@ -238,16 +238,16 @@ export default function Team() {
     <section className="flex items-center justify-center gap-2 flex-col mt-3">
       <div className="flex flex-col items-center justify-center  p-4 my-1">
         <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-4xl p-1 uppercase select-none cursor-pointer ">
-          Teachers
+          Our Team
         </h1>
       </div>
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
         {teachers.map((item, index) => (
           <Tilty key={index}>
-            <div class="w-full py-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
-              <div class="flex items-center justify-center rounded-full p-1 border-2 border-red-500">
+            <div class="w-full pb-4 bg-white rounded-none shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
+              <div class="flex items-center justify-center w-full">
                 <img
-                  class="rounded-full h-20 w-20 object-left"
+                  class="h-[300px] w-full object-left"
                   src={item.img}
                   alt="photo"
                 />
@@ -278,10 +278,10 @@ export default function Team() {
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
         {coreExecutives.map((item, index) => (
           <Tilty key={index}>
-            <div class="w-full py-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
-              <div class="flex items-center justify-center rounded-full p-1 border-2 border-red-500">
+            <div class="w-full pb-4 bg-white rounded-none shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
+              <div class="flex items-center justify-center w-full">
                 <img
-                  class="rounded-full h-20 w-20 object-left"
+                  class="h-[300px] w-full object-left"
                   src={item.img}
                   alt="photo"
                 />
@@ -312,10 +312,10 @@ export default function Team() {
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
         {executive.map((item, index) => (
           <Tilty key={index}>
-            <div class="w-full py-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
-              <div class="flex items-center justify-center rounded-full p-1 border-2 border-red-500">
+            <div class="w-full pb-4 bg-white rounded-none shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
+              <div class="flex items-center justify-center w-full">
                 <img
-                  class="rounded-full h-20 w-20 object-left"
+                  class="h-[300px] w-full object-left"
                   src={item.img}
                   alt="photo"
                 />
@@ -346,10 +346,10 @@ export default function Team() {
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
         {volunteer.map((item, index) => (
           <Tilty key={index}>
-            <div class="w-full py-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
-              <div class="flex items-center justify-center rounded-full p-1 border-2 border-red-500">
+            <div class="w-full pb-4 bg-white rounded-none shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
+              <div class="flex items-center justify-center w-full">
                 <img
-                  class="rounded-full h-20 w-20 object-left"
+                  class="h-[300px] w-full object-left"
                   src={item.img}
                   alt="photo"
                 />
@@ -380,10 +380,10 @@ export default function Team() {
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
         {members.map((item, index) => (
           <Tilty key={index}>
-            <div class="w-full py-4 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
-              <div class="flex items-center justify-center rounded-full p-1 border-2 border-red-500">
+            <div class="w-full pb-4 bg-white rounded-none shadow-lg overflow-hidden flex flex-col justify-center items-center drop-shadow-sm border-[1px] border-[#F6991A]">
+              <div class="flex items-center justify-center w-full">
                 <img
-                  class="rounded-full h-20 w-20 object-left"
+                  class="h-[300px] w-full object-left"
                   src={item.img}
                   alt="photo"
                 />
