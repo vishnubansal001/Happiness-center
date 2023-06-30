@@ -1,34 +1,36 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { useNavigate, NavLink, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../../firebase";
 
 import {
-    getStorage,
-    ref,
-    uploadBytesResumable,
-    getDownloadURL,
-  } from "firebase/storage";
-  import { addDoc, serverTimestamp } from "firebase/firestore";
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import AdminNav from "../../component/AdminComponents/AdminNav";
 export default function EditEvent() {
-    const params = useParams();
+  const params = useParams();
   const auth = getAuth();
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
   const [formData, setFormData] = useState({
-    eventName:"",
-    eventDescription:"",
+    eventName: "",
+    eventDescription: "",
     images: {},
   });
-  const {
-    eventName,
-    eventDescription,
-    images,
-  } = formData;
+  const { eventName, eventDescription, images } = formData;
   function onChange(e) {
     let boolean = null;
     if (e.target.files) {
@@ -43,88 +45,83 @@ export default function EditEvent() {
         [e.target.id]: boolean ?? e.target.value,
       }));
     }
-    
   }
 
-  useEffect(()=>{
-    
-    async function fetchListing(){
-       const docRef = doc(db, "events", params.eventID)
-       const docSnap = await getDoc(docRef);
-       if(docSnap.exists()){
-           setListing(docSnap.data())
-           setFormData({...docSnap.data()})
-           
-       }else{
-           navigate("/");
-           toast.error("Listing does not exist");
-       }
+  useEffect(() => {
+    async function fetchListing() {
+      const docRef = doc(db, "events", params.eventID);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data() });
+      } else {
+        navigate("/");
+        toast.error("Listing does not exist");
+      }
     }
     fetchListing();
-},[params.eventID, navigate])
+  }, [params.eventID, navigate]);
 
   async function onSubmit(e) {
     e.preventDefault();
     async function storeImage(image) {
-        return new Promise((resolve, reject) => {
-          const storage = getStorage();
-          const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
-          const storageRef = ref(storage, filename);
-          const uploadTask = uploadBytesResumable(storageRef, image);
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              // Observe state change events such as progress, pause, and resume
-              // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-              const progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              toast.info("Upload is " + progress + "% done");
-              switch (snapshot.state) {
-                case "paused":
-                  toast.info("Upload is paused");
-                  break;
-                case "running":
-                  toast.info("Upload is running");
-                  break;
-                default:
-                  break;  
-              }
-            },
-            (error) => {
-              // Handle unsuccessful uploads
-              reject(error);
-            },
-            () => {
-              // Handle successful uploads on complete
-              // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                resolve(downloadURL);
-              });
+      return new Promise((resolve, reject) => {
+        const storage = getStorage();
+        const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
+        const storageRef = ref(storage, filename);
+        const uploadTask = uploadBytesResumable(storageRef, image);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            toast.info("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case "paused":
+                toast.info("Upload is paused");
+                break;
+              case "running":
+                toast.info("Upload is running");
+                break;
+              default:
+                break;
             }
-          );
-        });
-      }
-      const imgUrls = await Promise.all(
-        [...images].map((image) => storeImage(image))
-      ).catch((error) => {
-        
-        toast.error("Images not uploaded");
-        return;
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            reject(error);
+          },
+          () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              resolve(downloadURL);
+            });
+          }
+        );
       });
-      
-      const formDataCopy = {
-        ...formData,
-        imgUrls,
-        timestamp: serverTimestamp(),
-      };
-      delete formDataCopy.images;
-      
-      const docRef = doc(db, "events", params.eventID);
-      await updateDoc(docRef, formDataCopy);
-      toast.success("Listing updated successfully");
-      navigate("/admin/events/listing")
+    }
+    const imgUrls = await Promise.all(
+      [...images].map((image) => storeImage(image))
+    ).catch((error) => {
+      toast.error("Images not uploaded");
+      return;
+    });
 
-}
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      timestamp: serverTimestamp(),
+    };
+    delete formDataCopy.images;
+
+    const docRef = doc(db, "events", params.eventID);
+    await updateDoc(docRef, formDataCopy);
+    toast.success("Listing updated successfully");
+    navigate("/admin/events/listing");
+  }
   return (
     <section className="w-screen h-full md:min-h-screen">
       {/* <div className="pt-32">Admin</div> 
@@ -137,7 +134,7 @@ export default function EditEvent() {
       <div className="flex items-center justify-center gap-2 w-full h-full">
         <div className="flex items-center justify-center gap-2 w-full h-full">
           <div className="flex items-start justify-center w-full  md:flex-row flex-col h-full">
-            <AdminNav/>
+            <AdminNav />
             <div className="flex items-center justify-start  p-4 h-full flex-col w-full md:w-[80%]">
               <div className="flex items-center justify-center mt-4 gap-2 p-4">
                 <h1 className="font-bold text-center flex items-center justify-center text-gray-800">
@@ -145,7 +142,10 @@ export default function EditEvent() {
                 </h1>
               </div>
               <div className="flex items-center justify-center gap-2 p-4">
-                <form onSubmit={onSubmit} className="flex flex-col justify-center gap-4 p-2">
+                <form
+                  onSubmit={onSubmit}
+                  className="flex flex-col justify-center gap-4 p-2"
+                >
                   <label htmlFor="title">Enter Event Name</label>
                   <input
                     type="text"
@@ -194,4 +194,3 @@ export default function EditEvent() {
     </section>
   );
 }
-

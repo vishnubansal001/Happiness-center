@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+} from "firebase/firestore";
 import { useNavigate, NavLink, useParams } from "react-router-dom";
-import exportFromJSON from 'export-from-json'
+import exportFromJSON from "export-from-json";
 import { db } from "../../firebase";
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 export default function RegListing() {
-    const params = useParams();
-    const auth = getAuth();
-    const navigate = useNavigate();
-    const [lastFetchListing, setLastFetchListing] = useState(null);
-    
+  const params = useParams();
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [lastFetchListing, setLastFetchListing] = useState(null);
+
   function onLogout() {
     auth.signOut();
     navigate("/");
@@ -39,7 +48,6 @@ export default function RegListing() {
           });
         });
         setRegistrations(registrations);
-        
       } catch (error) {
         toast.error(error);
       }
@@ -60,7 +68,7 @@ export default function RegListing() {
     }
   }
 
-  async function onFetchMoreListing(){
+  async function onFetchMoreListing() {
     try {
       const registrationsRef = collection(db, "speaker");
       const q = query(
@@ -79,40 +87,30 @@ export default function RegListing() {
           data: doc.data(),
         });
       });
-      setRegistrations((prevState)=>[...prevState, ...registrations]);
+      setRegistrations((prevState) => [...prevState, ...registrations]);
     } catch (error) {
       toast.error("Could not fetch listing");
     }
   }
 
-
-   async function downloadText () {
-    
+  async function downloadText() {
     try {
       const downloadRef = collection(db, "speaker");
-      const q = query(
-        downloadRef,
-        orderBy("timestamp", "desc"),
-      );
+      const q = query(downloadRef, orderBy("timestamp", "desc"));
       const querySnap = await getDocs(q);
       const downloads = [];
       querySnap.forEach((doc) => {
-       
-        return downloads.push(
-         
-           doc.data(),
-      );
+        return downloads.push(doc.data());
       });
       downloads.forEach((doc) => {
         doc.timestamp = doc.timestamp.toDate();
       });
       setDownloads(downloads);
-      const fileName = 'speaker';
-       exportFromJSON({ data: downloads, fileName, exportType:'xls' })
+      const fileName = "speaker";
+      exportFromJSON({ data: downloads, fileName, exportType: "xls" });
     } catch (error) {
       toast.error(error);
     }
-    
   }
   return (
     <section className="w-screen h-full">
@@ -126,17 +124,20 @@ export default function RegListing() {
       <div className="flex items-center justify-center gap-2 w-full h-full">
         <div className="flex items-center justify-center gap-2 w-full h-full md:py-4">
           <div className="flex items-center justify-center w-full md:py-6 h-full  flex-col">
-          <div className="flex items-start justify-start gap-2 p-4 h-full flex-col w-full border-b-2 md:border-r-2">
+            <div className="flex items-start justify-start gap-2 p-4 h-full flex-col w-full border-b-2 md:border-r-2">
               <div className="flex items-center justify-start py-4 md:py-8">
                 <h1 className="flex item-start justify-center cursor-pointer text-black text-base font-semibold whitespace-nowrap">
-                <NavLink
-                      to="/admin"
-                      style={({ isActive }) => ({
-                        color: isActive ? "green" : "black",
-                        
-                        transition: "all 0.5s ease-in-out",
-                      })}
-                    > ADMIN PANEL</NavLink>
+                  <NavLink
+                    to="/admin"
+                    style={({ isActive }) => ({
+                      color: isActive ? "green" : "black",
+
+                      transition: "all 0.5s ease-in-out",
+                    })}
+                  >
+                    {" "}
+                    ADMIN PANEL
+                  </NavLink>
                 </h1>
               </div>
               <div className="flex items-start justify-center">
@@ -279,68 +280,89 @@ export default function RegListing() {
                 <h1 className="flex items-center justify-center gap-2 text-black font-bold text-xl">
                   SPEAKERSESSION STUDENT LIST
                 </h1>
-                <button onClick={downloadText} className="bg-[#08bd80] p-3 text-gray-100 border border-gray-300 hover:border-slate-600 rounded transition duration-150 ease-in-out text-xs">Download(Excel)</button>
+                <button
+                  onClick={downloadText}
+                  className="bg-[#08bd80] p-3 text-gray-100 border border-gray-300 hover:border-slate-600 rounded transition duration-150 ease-in-out text-xs"
+                >
+                  Download(Excel)
+                </button>
               </div>
               <table className="flex-col flex items-center justify-center w-full bg-white">
-              { registrations && registrations?.length > 0 ? (registrations?.map((registration,index) => (
-                  <tbody key={index} className="flex items-center justify-center w-full">
-                    <tr className="flex items-center justify-around mx-auto  gap-2 w-full p-1 border flex-row">
-                    <td className="flex w-10 p-1 ml-2">
-                        {" "}
-                        <p className="font-normal font-base text-sm text-start">
-                          {index+1}
-                        </p>
-                      </td>
-                      <td className="flex w-full">
-                        {" "}
-                        <p className="font-normal font-base text-start text-sm">
-                          {registration.data?.name}
-                        </p>
-                      </td>
-                      <td className="flex w-full">
-                        {" "}
-                        <p className="font-normal font-base text-start text-sm">
-                          {registration.data?.email}
-                        </p>
-                      </td>
-                      <td className="flex w-full">
-                        {" "}
-                        <p className="font-normal font-base  text-start text-sm">
-                          {registration.data?.contact}
-                        </p>
-                      </td>
-                      <td className="flex w-full">
-                        {" "}
-                        <p className="font-normal font-base  text-start text-sm">
-                          {registration.data?.rollno}
-                        </p>
-                      </td>
-                      <td className="flex w-full">
-                        {" "}
-                        <p className="font-normal font-base  text-start text-sm">
-                          {registration.data?.year}
-                        </p>
-                      </td>
-                      <td className="flex w-full justify-end">
-                        {" "}
-                        {onDelete && (
-                          <FaTrash
-                            className="h-[1rem] cursor-pointer text-red-500"
-                            onClick={() => onDelete(registration.id)}
-                          />
-                        )}
+                {registrations && registrations?.length > 0 ? (
+                  registrations?.map((registration, index) => (
+                    <tbody
+                      key={index}
+                      className="flex items-center justify-center w-full"
+                    >
+                      <tr className="flex items-center justify-around mx-auto  gap-2 w-full p-1 border flex-row">
+                        <td className="flex w-10 p-1 ml-2">
+                          {" "}
+                          <p className="font-normal font-base text-sm text-start">
+                            {index + 1}
+                          </p>
+                        </td>
+                        <td className="flex w-full">
+                          {" "}
+                          <p className="font-normal font-base text-start text-sm">
+                            {registration.data?.name}
+                          </p>
+                        </td>
+                        <td className="flex w-full">
+                          {" "}
+                          <p className="font-normal font-base text-start text-sm">
+                            {registration.data?.email}
+                          </p>
+                        </td>
+                        <td className="flex w-full">
+                          {" "}
+                          <p className="font-normal font-base  text-start text-sm">
+                            {registration.data?.contact}
+                          </p>
+                        </td>
+                        <td className="flex w-full">
+                          {" "}
+                          <p className="font-normal font-base  text-start text-sm">
+                            {registration.data?.rollno}
+                          </p>
+                        </td>
+                        <td className="flex w-full">
+                          {" "}
+                          <p className="font-normal font-base  text-start text-sm">
+                            {registration.data?.year}
+                          </p>
+                        </td>
+                        <td className="flex w-full justify-end">
+                          {" "}
+                          {onDelete && (
+                            <FaTrash
+                              className="h-[1rem] cursor-pointer text-red-500"
+                              onClick={() => onDelete(registration.id)}
+                            />
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))
+                ) : (
+                  <tbody>
+                    <tr className="flex items-center justify-center">
+                      <td className="font-medium font-base uppercase">
+                        No registrations
                       </td>
                     </tr>
                   </tbody>
-                ))) : <tbody><tr className="flex items-center justify-center"><td className="font-medium font-base uppercase">No registrations</td></tr></tbody>}
+                )}
               </table>
               {registrations && lastFetchListing && (
-              <div className="flex justify-center w-full items-center flex-row mt-3 mb-3">
-                <button onClick={onFetchMoreListing} className="bg-[#08bd80] p-3 text-gray-100 border border-gray-300 hover:border-slate-600 rounded transition duration-150 ease-in-out text-xs">
-                  Load More
-                </button>
-              </div>
-            )}
+                <div className="flex justify-center w-full items-center flex-row mt-3 mb-3">
+                  <button
+                    onClick={onFetchMoreListing}
+                    className="bg-[#08bd80] p-3 text-gray-100 border border-gray-300 hover:border-slate-600 rounded transition duration-150 ease-in-out text-xs"
+                  >
+                    Load More
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
