@@ -75,6 +75,9 @@ import neeti from '../assets/neeti.jpeg';
 import harmeet from '../assets/harmeet.jpeg';
 import deepak from '../assets/deepak.jpeg';
 import amit from '../assets/amit.jpeg';
+import jasmeet from '../assets/jasmeet .jpg';
+import monit from '../assets/monit.jpg';
+import renu from '../assets/renu.jpg';
 
 export default function LandingPage() {
   const ambassadors = [
@@ -90,7 +93,7 @@ export default function LandingPage() {
       position: "Dean",
       description:
         "The happiness of your life depends upon the quality of your thoughts.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: monit,
     },
     {
       name: "Dr. Deepak Thakur",
@@ -251,7 +254,7 @@ export default function LandingPage() {
       position: "Associate Professor",
       description:
         "Happiness is when what you think, what you say, and what you do are in harmony",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: jasmeet,
     },
     {
       name: "Dr. Sonika Bakshi",
@@ -279,7 +282,7 @@ export default function LandingPage() {
       position: "HOD",
       description:
         "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: renu,
     },
     {
       name: "Dr. Sidarth Bedi",
