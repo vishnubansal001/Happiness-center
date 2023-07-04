@@ -66,6 +66,15 @@ import shivani from "../assets/shivani.jpg";
 import sidharth from "../assets/sidhath.jpg";
 import sonia from "../assets/sonia.jpg";
 import sumit from "../assets/sumit.jpg";
+import vijay from '../assets/vijay.jpeg';
+import ajay from '../assets/ajay.jpeg';
+import sovia from '../assets/sovia.jpeg';
+import sonika from '../assets/sonika.jpeg';
+import sanjay from '../assets/sanjay.jpeg';
+import neeti from '../assets/neeti.jpeg';
+import harmeet from '../assets/harmeet.jpeg';
+import deepak from '../assets/deepak.jpeg';
+import amit from '../assets/amit.jpeg';
 
 export default function LandingPage() {
   const ambassadors = [
@@ -88,7 +97,7 @@ export default function LandingPage() {
       position: "Head (Academic Operations)",
       description:
         "The happiest people don't have the best of everything, they just make the best of everything.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: deepak,
     },
     {
       name: "Dr. Shivani Malhotra",
@@ -109,14 +118,14 @@ export default function LandingPage() {
       position: "Dean (Academic Affairs)",
       description:
         "Happiness is not a station you arrive at, but a manner of traveling",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: vijay,
     },
     {
       name: "Dr. Ajay Goyal",
       position: "Dean",
       description:
         "Happiness is not a station you arrive at, but a manner of traveling",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: ajay,
     },
     {
       name: "Dr. Sandhir Sharma",
@@ -186,7 +195,7 @@ export default function LandingPage() {
       position: "Dean",
       description:
         "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: sovia,
     },
     {
       name: "Ms. Aarti Joshi",
@@ -200,7 +209,7 @@ export default function LandingPage() {
       position: "Dean",
       description:
         "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: neeti,
     },
     {
       name: "Dr. Onkar Bedi",
@@ -228,7 +237,7 @@ export default function LandingPage() {
       position: "Dean (Animation)",
       description:
         "Happiness is when what you think, what you say, and what you do are in harmony",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: sanjay,
     },
     {
       name: "Dr. Vaibhavi Pruthviraj Ranavaade",
@@ -249,7 +258,7 @@ export default function LandingPage() {
       position: "Dean",
       description:
         "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: sonika,
     },
     {
       name: "Dr. Amandeep Singh",
@@ -263,7 +272,7 @@ export default function LandingPage() {
       position: "Principal",
       description:
         "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: harmeet,
     },
     {
       name: "Dr. Renu Ranjit Thakur",
@@ -284,7 +293,7 @@ export default function LandingPage() {
       position: "Professor",
       description:
         "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: amit,
     },
   ];
   const testimonials = [
