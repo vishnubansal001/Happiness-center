@@ -13,84 +13,44 @@ import frame2 from "../assets/frame2.svg";
 import { NavLink } from "react-router-dom";
 import vector3 from "../assets/Vector3.svg";
 import manav from "../assets/manav.jpg";
+import amandeep from "../assets/amandeep.jpg";
+import anupama from "../assets/anupama.jpg";
+import ashutosh from "../assets/ashutosh.jpg";
+import atul from "../assets/atul.jpg";
+import dhiresh from "../assets/dhiresh.jpg";
+import gitanjali from "../assets/gitanjali.jpg";
+import gopal from "../assets/gopal.jpg";
+import isha from "../assets/isha.jpg";
+import jyoti from "../assets/jyoti.jpg";
+import onkar from "../assets/onkar.jpg";
+import rashmi from "../assets/rashmi.jpg";
+import sandhir from "../assets/sandhir.jpg";
+import shivani from "../assets/shivani.jpg";
+import sidharth from "../assets/sidhath.jpg";
+import sonia from "../assets/sonia.jpg";
+import sumit from "../assets/sumit.jpg";
 
 export default function About() {
   const ambassadors = [
     {
-      name: "Dr. Sandhir Sharma",
-      position: "Chitkara Business School",
+      name: "Dr. Praveen Kumar Khosla",
+      position: "Pro Vice Chancellor",
       description:
         "Happiness is not something ready-made. It comes from your own actions.",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Shivani Chopra",
-      position: "Chitkara Business School",
+      name: "Dr. Monit Kapoor",
+      position: "Dean",
       description:
         "The happiness of your life depends upon the quality of your thoughts.",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Rashmi Aggarwal",
-      position: "Chitkara Business School",
-      description:
-        "Happiness is not the absence of problems, it's the ability to deal with them.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Dhiresh Kulsherstha",
-      position: "Chitkara Business School",
-      description:
-        "The greatest happiness you can have is knowing that you do not necessarily require happiness.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Sumit Wadhera",
-      position: "College of Architecture and Planning",
-      description:
-        "The secret of happiness is not in doing what one likes, but in liking what one does.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Prof. Atul Dutta",
-      position: "College of Architecture and Planning",
-      description:
-        "The greatest happiness you can have is knowing that you are loved for who you are.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Vani Parwez",
-      position: "Chitkara College of Education",
-      description:
-        "Happiness is not something you postpone for the future; it is something you design for the present.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Sangeeta Pant",
-      position: "Chitkara College of Education",
-      description:
-        "Happiness is not having what you want. It is wanting what you have.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Vidhu Baggan",
-      position: "CUIET",
-      description:
-        "Happiness is a state of mind. It's just according to the way you look at things.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Monit Kapoor",
-      position: "CUIET",
+      name: "Dr. Deepak Thakur",
+      position: "Head (Academic Operations)",
       description:
         "The happiest people don't have the best of everything, they just make the best of everything.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Isha",
-      position: "ECE Department",
-      description:
-        "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
@@ -98,252 +58,195 @@ export default function About() {
       position: "ECE Department",
       description:
         "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: shivani,
     },
     {
-      name: "Mr. Gopal Meena",
-      position: "Chitkara Design School",
-      description:
-        "Happiness is when what you think, what you say, and what you do are in harmony",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Ms. Akansha Ghai",
-      position: "Chitkara Design School",
-      description:
-        "The greatest happiness you can have is knowing that you are loved for who you are.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Ashutosh Mishra",
-      position: "Department of Mess Communication",
-      description:
-        "Happiness is a perfume you cannot pour on others without getting a few drops on yourself.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Gitanjali Kalia",
-      position: "Department of Mess Communication",
-      description:
-        "The happiness of your life depends upon the quality of your relationships.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Anupama",
-      position: "Psychology Department",
-      description:
-        "Happiness is when what you think, what you say, and what you do are in harmony",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mr. Gopal Meena",
-      position: "Chitkara Design School",
+      name: "Dr. Isha",
+      position: "ECE Department",
       description:
         "Happiness is a choice. You can choose to be happy. There's going to be stress in life, but it's your choice whether you let it affect you or not.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Jyoti",
-      position: "Psychology Department",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Sonika Bakshi",
-      position: "Department of Allied health Nursing",
-      description:
-        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Sunita Singh",
-      position: "Department of Allied health Nursing",
-      description:
-        "The happiest people don't have the best of everything, they just make the best of everything.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Amandeep Kaur",
-      position: "Department of Allied health Nursing",
-      description:
-        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Manpreet Grewal",
-      position: "Law School",
-      description:
-        "Happiness is not something you can postpone for the future; it is something you design for the present",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+      img: isha,
     },
     {
       name: "Dr. Vijay Kumar Jadon",
-      position: "Applied Engineering-CUIET",
+      position: "Dean (Academic Affairs)",
       description:
         "Happiness is not a station you arrive at, but a manner of traveling",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Sdarth Bedi",
-      position: "IHM/CCHM,CULINARY",
+      name: "Dr. Ajay Goyal",
+      position: "Dean",
       description:
-        "Happiness is a state of mind. It's just according to the way you look at things",
+        "Happiness is not a station you arrive at, but a manner of traveling",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Chef Shankar",
-      position: "Department of Allied health Nursing",
-      description:
-        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Amandeep Kaur",
-      position: "IHM/CCHM,CULINARY",
-      description:
-        "The key to being happy is knowing you have the power to choose what to accept and what to let go",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mr. Amit",
-      position: "IHM/CCHM,CULINARY",
-      description:
-        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. Harpal Singh",
-      position: "Liberal Arts",
-      description:
-        "Happiness is not the absence of problems, it's the ability to deal with them",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Dr. PK Khosla",
+      name: "Dr. Sandhir Sharma",
       position: "Pro Vice Chancellor",
       description:
-        "The happiness of your life depends upon the quality of your thoughts.",
+        "Happiness is not a station you arrive at, but a manner of traveling",
+      img: sandhir,
+    },
+    {
+      name: "Dr. Dhiresh Kulsherstha",
+      position: "Dean (Economics)",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness.",
+      img: dhiresh,
+    },
+    {
+      name: "Dr. Rashmi Aggarwal",
+      position: "Dean (Commerce)",
+      description:
+        "Happiness is not the absence of problems, it's the ability to deal with them.",
+      img: rashmi,
+    },
+    {
+      name: "Dr. Ashutosh Mishra",
+      position: "Dean",
+      description:
+        "Happiness is a perfume you cannot pour on others without getting a few drops on yourself.",
+      img: ashutosh,
+    },
+    {
+      name: "Dr. Gitanjali Kalia",
+      position: "Assistant Professor",
+      description:
+        "The happiness of your life depends upon the quality of your relationships.",
+      img: gitanjali,
+    },
+    {
+      name: "Prof. Atul Dutta",
+      position: "Dean (Interior Design)",
+      description:
+        "The greatest happiness you can have is knowing that you are loved for who you are.",
+      img: atul,
+    },
+    {
+      name: "Dr. Sumit Wadhera",
+      position: "Dean Academic",
+      description:
+        "The secret of happiness is not in doing what one likes, but in liking what one does.",
+      img: sumit,
+    },
+    {
+      name: "Dr. Anupama",
+      position: "HOD",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: anupama,
+    },
+    {
+      name: "Dr. Jyoti",
+      position: "Assistant Professor",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
+      img: jyoti,
+    },
+    {
+      name: "Dr. Sovia R J Singh",
+      position: "Dean",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "COL. Rakesh Sharma",
-      position: "Director Office of University Affairs",
+      name: "Ms. Aarti Joshi",
+      position: "Dean",
       description:
-        "The most important thing is to enjoy your life—to be happy—it's all that matters.",
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Rina Angel",
-      position: "Director Administration- HK & Maintenance",
+      name: "Dr. Neeti Sethi",
+      position: "Dean",
       description:
-        "The happiest people are those who are too busy to notice whether they are happy or not",
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "CA. Rajat Bhatia",
-      position: "Office of Finance and accounts",
+      name: "Dr. Onkar Bedi",
+      position: "Assistant Dean",
       description:
-        "Happiness is not something you can buy, it's something you can create",
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
+      img: onkar,
+    },
+    {
+      name: "Dr. Sonia Dhiman",
+      position: "Assistant Dean",
+      description:
+        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind",
+      img: sonia,
+    },
+    {
+      name: "Mr. Gopal Meena",
+      position: "Vise President",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
+      img: gopal,
+    },
+    {
+      name: "Mr. Sanjay Jangid",
+      position: "Dean (Animation)",
+      description:
+        "Happiness is when what you think, what you say, and what you do are in harmony",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Capt. Seema Sidhu",
-      position: "Office of Residential Services",
+      name: "Dr. Vaibhavi Pruthviraj Ranavaade",
+      position: "Dean (Fashion Design)",
       description:
-        "The secret of happiness is not in doing what one likes, but in liking what one does",
+        "Happiness is when what you think, what you say, and what you do are in harmony",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Ritu Nag",
-      position: "Chief Communications Officer",
+      name: "Dr. Jasneet Kaur",
+      position: "Associate Professor",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+        "Happiness is when what you think, what you say, and what you do are in harmony",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Mr. Harinder Pal Singh",
-      position: "Director of University Sports Board",
+      name: "Dr. Sonika Bakshi",
+      position: "Dean",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+        "Happiness is the art of never holding in your mind the memory of any unpleasant thing that has passed.",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Mr. Sawaranjeet Sidhu",
-      position: "Office of Brand Communication",
+      name: "Dr. Amandeep Singh",
+      position: "Principal (Physiotherapy)",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
+      img: amandeep,
+    },
+    {
+      name: "Dr. Harmeet Kaur",
+      position: "Principal",
+      description:
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Harkiran Kaur",
-      position: "Chitkara Alumni Network",
+      name: "Dr. Renu Ranjit Thakur",
+      position: "HOD",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
     {
-      name: "Dr. Harpreet Singh Bhatia",
-      position: "Office of Talent Management",
+      name: "Dr. Sidarth Bedi",
+      position: "Assistant Professor",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
+        "Happiness is a state of mind. It's just according to the way you look at things",
+      img: sidharth,
     },
     {
-      name: "Mr. Arpit",
-      position: "Branding Team",
+      name: "Mr. Amit Gupta",
+      position: "Professor",
       description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mr. Atul",
-      position: "Branding Team",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Ms. Mahima",
-      position: "Branding Team",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Ms. Parminder Kaur",
-      position: "Branding Team",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mrs. Tanushree",
-      position: "Branding Team",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-
-    {
-      name: "Mr. Vicky Kumar",
-      position: "Residential Department",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mr. Pradeep Tripaathi",
-      position: "Senior Boys Hostels Warden",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
-      img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
-    },
-    {
-      name: "Mrs. Indra",
-      position: "Senior Girls Hostel Warden",
-      description:
-        "Happiness is not a possession to be prized, it is a quality of thought, a state of mind.",
+        "The greatest happiness you can have is knowing that you do not necessarily require happiness",
       img: "https://avatars.githubusercontent.com/u/92084737?s=400&u=b72cd8c67b041952cc4145ca1f19926b41729833&v=4",
     },
   ];
