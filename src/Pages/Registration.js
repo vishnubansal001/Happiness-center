@@ -229,7 +229,7 @@ export default function Registration() {
     }));
   }
   return (
-    <section className="h-full w-screen flex relative items-center justify-center font-zilla">
+    <section className="h-full w-screen flex relative items-center justify-center font-zilla pt-[6rem]">
       <div className="h-full w-full flex items-center justify-center">
         <div className="h-full w-full flex flex-col items-center justify-center">
           <h2 className="text-3xl mb-4 md:mb-2">Registration Form</h2>

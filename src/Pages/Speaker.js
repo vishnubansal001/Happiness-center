@@ -153,7 +153,7 @@ export default function Speaker() {
     }));
   }
   return (
-    <section className="h-full w-screen flex relative items-center justify-center font-zilla">
+    <section className="h-full w-screen flex relative items-center justify-center font-zilla pt-[6rem]">
       <div className="h-full w-full flex items-center justify-center">
         <div className="h-full w-full flex flex-col items-center justify-center">
           <div className="h-full w-full  md:w-[65%] lg:w-[60%] xl:w-1/2 flex flex-col items-center justify-center gap-4">

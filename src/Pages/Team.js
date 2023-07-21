@@ -235,7 +235,7 @@ export default function Team() {
     },
   ];
   return (
-    <section className="flex items-center justify-center gap-2 flex-col mt-3">
+    <section className="flex items-center justify-center gap-2 flex-col pt-[6rem]">
       <div className="flex flex-col items-center justify-center  p-4 my-1">
         <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-4xl p-1 uppercase select-none cursor-pointer ">
           Our Team

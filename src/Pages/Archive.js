@@ -77,7 +77,7 @@ export default function Archive() {
   }
 
   return (
-    <section className="w-screen h-full flex items-center justify-center flex-col">
+    <section className="w-screen h-full flex items-center justify-center flex-col pt-[6rem]">
       <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-xl sm:text-4xl p-1 uppercase text-[#F6991A]">
         Archives
       </h1>

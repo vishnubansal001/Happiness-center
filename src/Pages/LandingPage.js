@@ -469,7 +469,7 @@ export default function LandingPage() {
     };
   }, [isCounted]);
   return (
-    <div className="flex flex-col items-center font-monts gap-6">
+    <div className="flex flex-col items-center font-monts gap-6 pt-[6rem]">
       <section className="h-full w-screen flex flex-col items-center justify-center gap-6 relative">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center md:mb-8 md:mt-2 my-0 mb-2 max-w-[90rem]">
           <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 w-full h-full md:w-1/2 justify-center">

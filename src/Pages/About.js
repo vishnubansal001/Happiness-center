@@ -265,7 +265,7 @@ export default function About() {
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   return (
     <>
-      <section className="flex items-center justify-center gap-2 flex-col my-6">
+      <section className="flex items-center justify-center gap-2 flex-col pt-[6rem]">
         <div className="w-screen p-3 h-full">
           <h1 className="font-monts font-bold flex items-center justify-start ml-4 sm:ml-6 md:ml-12 gap-2 text-3xl xs:text-4xl lg:text-6xl p-1 uppercase">
             About<span className="text-[#EF1C22]"> Us</span>
