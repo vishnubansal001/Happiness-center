@@ -29,18 +29,18 @@ import shivani from "../assets/shivani.jpg";
 import sidharth from "../assets/sidhath.jpg";
 import sonia from "../assets/sonia.jpg";
 import sumit from "../assets/sumit.jpg";
-import vijay from '../assets/vijay.jpeg';
-import ajay from '../assets/ajay.jpeg';
-import sovia from '../assets/sovia.jpeg';
-import sonika from '../assets/sonika.jpeg';
-import sanjay from '../assets/sanjay.jpeg';
-import neeti from '../assets/neeti.jpeg';
-import harmeet from '../assets/harmeet.jpeg';
-import deepak from '../assets/deepak.jpeg';
-import amit from '../assets/amit.jpeg';
-import jasmeet from '../assets/jasmeet .jpg';
-import monit from '../assets/monit.jpg';
-import renu from '../assets/renu.jpg';
+import vijay from "../assets/vijay.jpeg";
+import ajay from "../assets/ajay.jpeg";
+import sovia from "../assets/sovia.jpeg";
+import sonika from "../assets/sonika.jpeg";
+import sanjay from "../assets/sanjay.jpeg";
+import neeti from "../assets/neeti.jpeg";
+import harmeet from "../assets/harmeet.jpeg";
+import deepak from "../assets/deepak.jpeg";
+import amit from "../assets/amit.jpeg";
+import jasmeet from "../assets/jasmeet .jpg";
+import monit from "../assets/monit.jpg";
+import renu from "../assets/renu.jpg";
 
 export default function About() {
   const ambassadors = [

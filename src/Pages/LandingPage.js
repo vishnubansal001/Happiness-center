@@ -66,18 +66,18 @@ import shivani from "../assets/shivani.jpg";
 import sidharth from "../assets/sidhath.jpg";
 import sonia from "../assets/sonia.jpg";
 import sumit from "../assets/sumit.jpg";
-import vijay from '../assets/vijay.jpeg';
-import ajay from '../assets/ajay.jpeg';
-import sovia from '../assets/sovia.jpeg';
-import sonika from '../assets/sonika.jpeg';
-import sanjay from '../assets/sanjay.jpeg';
-import neeti from '../assets/neeti.jpeg';
-import harmeet from '../assets/harmeet.jpeg';
-import deepak from '../assets/deepak.jpeg';
-import amit from '../assets/amit.jpeg';
-import jasmeet from '../assets/jasmeet .jpg';
-import monit from '../assets/monit.jpg';
-import renu from '../assets/renu.jpg';
+import vijay from "../assets/vijay.jpeg";
+import ajay from "../assets/ajay.jpeg";
+import sovia from "../assets/sovia.jpeg";
+import sonika from "../assets/sonika.jpeg";
+import sanjay from "../assets/sanjay.jpeg";
+import neeti from "../assets/neeti.jpeg";
+import harmeet from "../assets/harmeet.jpeg";
+import deepak from "../assets/deepak.jpeg";
+import amit from "../assets/amit.jpeg";
+import jasmeet from "../assets/jasmeet .jpg";
+import monit from "../assets/monit.jpg";
+import renu from "../assets/renu.jpg";
 
 export default function LandingPage() {
   const ambassadors = [
@@ -501,13 +501,13 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex flex-row items-center justify-center p-6 sm:p-4 md:p-6 xl:p-10 mt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 xl:gap-8 justify-around p-2 xs:p-6 sm:p-0 md:p-4 lg:p-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 xl:gap-8 justify-around p-2 xs:p-6 sm:p-0 md:p-4 lg:p-1">
             <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
               <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center  mt-4">
                   <img src={library} alt="arrow next" className="w-12 h-12" />
                 </div>
-                <h1 className="font-bold">Library</h1>
+                <h1 className="font-bold">Booknactics</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Any book that helps a child to form a habit of reading, to
@@ -544,7 +544,7 @@ export default function LandingPage() {
                     className="w-12 h-12"
                   />
                 </div>
-                <h1 className="font-bold">Meditation</h1>
+                <h1 className="font-bold">Mindfulness Meditation</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Happiness Centre offers the following meditations in the
@@ -572,7 +572,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            {/* <div className="grid-cols-1   relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+            <div className="grid-cols-1   relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
               <div className="flex flex-col relative h-full w-full bg-[#C6FCDB]  justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
                 <div className="flex flex-row justify-start items-center h-full w-full mt-4">
                   <img
@@ -581,7 +581,7 @@ export default function LandingPage() {
                     className="w-12 h-12"
                   />
                 </div>
-                <h1 className="font-bold">Counseling</h1>
+                <h1 className="font-bold">Perma Model</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Counselling sessions are being taken by Chief Happiness
@@ -604,13 +604,13 @@ export default function LandingPage() {
                   />
                 </div>
               </div>
-            </div> */}
+            </div>
             <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
               <div className="flex flex-col relative bg-[#FEC2D9] w-full h-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center h-full w-full mt-4">
                   <img src={speaker} alt="arrow next" className="w-12 h-12" />
                 </div>
-                <h1 className="font-bold">Speaker Session</h1>
+                <h1 className="font-bold">Guest Speaker Sessions</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     A motivational speaker has mastered the art of igniting in
@@ -634,6 +634,138 @@ export default function LandingPage() {
                     src={speaker2}
                     alt="vector library"
                     className="w-10 h-10"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#FCDA69] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+                <div className="flex flex-row justify-start items-center  mt-4">
+                  <img src={library} alt="arrow next" className="w-12 h-12" />
+                </div>
+                <h1 className="font-bold">Happiness Lounge</h1>
+                <div className="flex items-center">
+                  <p className="text-sm md:text-base font-zilla">
+                    Any book that helps a child to form a habit of reading, to
+                    make reading one of his deep and continuing needs, is good
+                    for him. So we have chosen more than 50 books in the
+                    Happiness library that give new ideas and lessons by adding
+                    some flavor and essence to our life.
+                  </p>
+                </div>
+                <NavLink to="/library" className="cursor-default">
+                  <div className="flex flex-row justify-end items-center">
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
+                  </div>
+                </NavLink>
+                <div className="absolute top-2 right-2 flex items-center justify-center">
+                  <img
+                    src={library2}
+                    alt="vector library"
+                    className="w-12 h-12"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#FEC2D9] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+                <div className="flex flex-row justify-start items-center  mt-4">
+                  <img src={library} alt="arrow next" className="w-12 h-12" />
+                </div>
+                <h1 className="font-bold">Carrer and Life Skills</h1>
+                <div className="flex items-center">
+                  <p className="text-sm md:text-base font-zilla">
+                    Any book that helps a child to form a habit of reading, to
+                    make reading one of his deep and continuing needs, is good
+                    for him. So we have chosen more than 50 books in the
+                    Happiness library that give new ideas and lessons by adding
+                    some flavor and essence to our life.
+                  </p>
+                </div>
+                <NavLink to="/library" className="cursor-default">
+                  <div className="flex flex-row justify-end items-center">
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
+                  </div>
+                </NavLink>
+                <div className="absolute top-2 right-2 flex items-center justify-center">
+                  <img
+                    src={library2}
+                    alt="vector library"
+                    className="w-12 h-12"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+                <div className="flex flex-row justify-start items-center  mt-4">
+                  <img src={library} alt="arrow next" className="w-12 h-12" />
+                </div>
+                <h1 className="font-bold">Each One Teach One</h1>
+                <div className="flex items-center">
+                  <p className="text-sm md:text-base font-zilla">
+                    Any book that helps a child to form a habit of reading, to
+                    make reading one of his deep and continuing needs, is good
+                    for him. So we have chosen more than 50 books in the
+                    Happiness library that give new ideas and lessons by adding
+                    some flavor and essence to our life.
+                  </p>
+                </div>
+                <NavLink to="/library" className="cursor-default">
+                  <div className="flex flex-row justify-end items-center">
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
+                  </div>
+                </NavLink>
+                <div className="absolute top-2 right-2 flex items-center justify-center">
+                  <img
+                    src={library2}
+                    alt="vector library"
+                    className="w-12 h-12"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#C6FCDB] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+                <div className="flex flex-row justify-start items-center  mt-4">
+                  <img src={library} alt="arrow next" className="w-12 h-12" />
+                </div>
+                <h1 className="font-bold">Fun and Games Activities</h1>
+                <div className="flex items-center">
+                  <p className="text-sm md:text-base font-zilla">
+                    Any book that helps a child to form a habit of reading, to
+                    make reading one of his deep and continuing needs, is good
+                    for him. So we have chosen more than 50 books in the
+                    Happiness library that give new ideas and lessons by adding
+                    some flavor and essence to our life.
+                  </p>
+                </div>
+                <NavLink to="/library" className="cursor-default">
+                  <div className="flex flex-row justify-end items-center">
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
+                  </div>
+                </NavLink>
+                <div className="absolute top-2 right-2 flex items-center justify-center">
+                  <img
+                    src={library2}
+                    alt="vector library"
+                    className="w-12 h-12"
                   />
                 </div>
               </div>
