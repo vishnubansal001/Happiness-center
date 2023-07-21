@@ -67,7 +67,7 @@ export default function Header() {
                 </div>
               </NavLink>
               <NavLink
-                to="/about"
+                to="/skillverse"
                 style={({ isActive }) => ({
                   color: isActive ? "red" : "black",
                   fontWeight: isActive ? "bold" : "normal",
@@ -76,7 +76,7 @@ export default function Header() {
               >
                 {" "}
                 <div className="flex item-center justify-center cursor-pointer">
-                  About
+                  Skillverse
                 </div>
               </NavLink>
               {/* <NavLink
@@ -126,6 +126,19 @@ export default function Header() {
               >
                 <div className="flex item-center justify-center cursor-pointer">
                   Archive
+                </div>
+              </NavLink>
+              <NavLink
+                to="/about"
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "black",
+                  fontWeight: isActive ? "bold" : "normal",
+                  transition: "all 0.5s ease-in-out",
+                })}
+              >
+                {" "}
+                <div className="flex item-center justify-center cursor-pointer">
+                  About
                 </div>
               </NavLink>
               <NavLink
@@ -212,7 +225,7 @@ export default function Header() {
                 >
                   {" "}
                   <div className="flex item-center justify-center cursor-pointer">
-                    About
+                    Skillverse
                   </div>
                 </NavLink>
                 {/* <NavLink
@@ -262,6 +275,19 @@ export default function Header() {
                 >
                   <div className="flex item-center justify-center cursor-pointer">
                     Archive
+                  </div>
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  style={({ isActive }) => ({
+                    color: isActive ? "red" : "black",
+                    fontWeight: isActive ? "bold" : "normal",
+                    transition: "all 0.5s ease-in-out",
+                  })}
+                >
+                  {" "}
+                  <div className="flex item-center justify-center cursor-pointer">
+                    About
                   </div>
                 </NavLink>
                 <NavLink
