@@ -29,6 +29,7 @@ import SpeakerListing from "./admin/SpeakerListing";
 import LibraryListing from "./admin/LibraryListing";
 import Notice from "./admin/Notice";
 import Rewards from "./admin/Rewards";
+import Skillverse from "./Skillverse";
 
 document.onkeydown = function (e) {
   if (e.keyCode === 123) {
@@ -76,6 +77,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/skillverse" element={<Skillverse />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/counseling" element={<Counseling />} />
           <Route exact path="/library" element={<Library />} />
