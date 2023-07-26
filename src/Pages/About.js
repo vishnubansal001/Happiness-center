@@ -274,6 +274,11 @@ export default function About() {
       </section>
       <section className="h-full w-screen relative flex flex-col justify-center my-2 p-2">
         <div className="flex flex-col items-center justify-center h-full w-full p-1 mt-2">
+          <div className="w-screen p-3 h-full">
+            <h1 className="font-monts font-bold flex items-center justify-center ml-4 sm:ml-6 md:ml-12 gap-2 text-3xl xs:text-4xl lg:text-6xl p-1 uppercase">
+              OUR<span className="text-[#EF1C22]">CHO</span>
+            </h1>
+          </div>
           <div className="flex flex-col md:flex-row items-center justify-center gap-1 h-full w-full">
             <div className="flex flex-col gap-4 items-center justify-center h-full w-full md:w-[46%] p-6 mb-4  md:my-8">
               <div className="flex items-center justify-center p-4 relative">
@@ -339,7 +344,7 @@ export default function About() {
               </NavLink>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center w-full h-full p-4">
+          {/* <div className="flex flex-col items-center justify-center w-full h-full p-4">
             <div className="flex flex-col items-center justify-center w-full h-full p-4">
               <h1 className="font-monts font-bold flex items-center justify-center gap-2  text-xl sm:text-4xl p-1 uppercase">
                 OUR <span className="text-[#EF1C22]"> AMBASSADORS</span>
@@ -404,7 +409,7 @@ export default function About() {
                 </Swiper>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="flex items-center justify-center absolute top-0 bottom-0 right-0 z-[-1]">
           <img

@@ -58,7 +58,7 @@ export default function Skillverse() {
     <section className="flex items-center justify-center gap-2 flex-col pt-[6rem]">
       <div className="flex flex-col items-center justify-center  p-4 my-1">
         <h1 className="font-monts font-bold flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-3xl p-1 uppercase select-none cursor-pointer ">
-          Stake Holders
+          Stake <span className="text-[#EF1C22]">Holders</span>
         </h1>
       </div>
       <div class="grid w-full sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 xl:px-14 lg:px-12 md:px-10 sm:px-8 px-6  md:py-8 py-6 lg:py-12 auto-rows-fr">
