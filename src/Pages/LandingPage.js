@@ -503,11 +503,11 @@ export default function LandingPage() {
         <div className="flex flex-row items-center justify-center p-6 sm:p-4 md:p-6 xl:p-10 mt-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 xl:gap-8 justify-around p-2 xs:p-6 sm:p-0 md:p-4 lg:p-1">
             <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+              <div className="flex flex-col relative bg-[#FEC2D9] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center  mt-4">
                   <img src={library} alt="arrow next" className="w-12 h-12" />
                 </div>
-                <h1 className="font-bold">Booknactics</h1>
+                <h1 className="font-bold">Carrer and Life Skills</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Any book that helps a child to form a habit of reading, to
@@ -535,45 +535,8 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#FCDA69] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
-                <div className="flex flex-row justify-start items-center  mt-4">
-                  <img
-                    src={meditation}
-                    alt="arrow next"
-                    className="w-12 h-12"
-                  />
-                </div>
-                <h1 className="font-bold">Mindfulness Meditation</h1>
-                <div className="flex items-center">
-                  <p className="text-sm md:text-base font-zilla">
-                    Happiness Centre offers the following meditations in the
-                    Meditation room:- Mindful Breathing Meditation, Guided
-                    Meditation, Silence Meditation. Meditation doesn’t only make
-                    us more peaceful; it also helps students to be more
-                    successful in all life endeavors.
-                  </p>
-                </div>
-                <NavLink to="/meditation" className="cursor-default">
-                  <div className="flex flex-row justify-end items-center ">
-                    <img
-                      src={arrow}
-                      alt="arrow next"
-                      className="w-10 h-10 cursor-pointer"
-                    />
-                  </div>
-                </NavLink>
-                <div className="absolute top-2 right-2 flex items-center justify-center">
-                  <img
-                    src={meditation2}
-                    alt="vector library"
-                    className="w-7 h-7"
-                  />
-                </div>
-              </div>
-            </div>
             <div className="grid-cols-1   relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative h-full w-full bg-[#C6FCDB]  justify-center gap-6 p-4 shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black">
+              <div className="flex flex-col relative h-full w-full bg-[#C6FCDB]  justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center h-full w-full mt-4">
                   <img
                     src={counseling}
@@ -581,7 +544,7 @@ export default function LandingPage() {
                     className="w-12 h-12"
                   />
                 </div>
-                <h1 className="font-bold">Perma Model</h1>
+                <h1 className="font-bold">Perma Interventions</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Counselling sessions are being taken by Chief Happiness
@@ -672,11 +635,11 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
-              <div className="flex flex-col relative bg-[#FEC2D9] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+              <div className="flex flex-col relative bg-[#F45B49] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
                 <div className="flex flex-row justify-start items-center  mt-4">
                   <img src={library} alt="arrow next" className="w-12 h-12" />
                 </div>
-                <h1 className="font-bold">Carrer and Life Skills</h1>
+                <h1 className="font-bold">Booknactics</h1>
                 <div className="flex items-center">
                   <p className="text-sm md:text-base font-zilla">
                     Any book that helps a child to form a habit of reading, to
@@ -700,6 +663,43 @@ export default function LandingPage() {
                     src={library2}
                     alt="vector library"
                     className="w-12 h-12"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative w-full h-full p-0 xs:p-4 sm:p-2 md:p-6 lg:p-0">
+              <div className="flex flex-col relative bg-[#FCDA69] h-full w-full justify-center gap-6 p-4 transition-all duration-300 ease-in-out shadow-[6px_6px_rgba(0,0,0,1)] border-[1px] border-black hover:shadow-none hover:border-none hover:border-transparent">
+                <div className="flex flex-row justify-start items-center  mt-4">
+                  <img
+                    src={meditation}
+                    alt="arrow next"
+                    className="w-12 h-12"
+                  />
+                </div>
+                <h1 className="font-bold">Mindfulness Meditation</h1>
+                <div className="flex items-center">
+                  <p className="text-sm md:text-base font-zilla">
+                    Happiness Centre offers the following meditations in the
+                    Meditation room:- Mindful Breathing Meditation, Guided
+                    Meditation, Silence Meditation. Meditation doesn’t only make
+                    us more peaceful; it also helps students to be more
+                    successful in all life endeavors.
+                  </p>
+                </div>
+                <NavLink to="/meditation" className="cursor-default">
+                  <div className="flex flex-row justify-end items-center ">
+                    <img
+                      src={arrow}
+                      alt="arrow next"
+                      className="w-10 h-10 cursor-pointer"
+                    />
+                  </div>
+                </NavLink>
+                <div className="absolute top-2 right-2 flex items-center justify-center">
+                  <img
+                    src={meditation2}
+                    alt="vector library"
+                    className="w-7 h-7"
                   />
                 </div>
               </div>
